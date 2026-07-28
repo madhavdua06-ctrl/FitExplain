@@ -1,0 +1,163 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  mode          String?   @default("simple")
+  sessions      Session[]
+  accounts      Account[]
+
+  onboardingResponses OnboardingResponse[]
+  generatedPlan       GeneratedPlan?
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+// =========================================================
+// App-specific models
+// =========================================================
+
+enum Goal {
+  WEIGHT_LOSS
+  MUSCLE_GAIN
+  ENDURANCE
+  GENERAL_HEALTH
+}
+
+enum Experience {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum EquipmentTier {
+  NONE
+  HOME_BASIC
+  FULL_GYM
+}
+
+enum SplitType {
+  FULL_BODY
+  UPPER_LOWER
+  PUSH_PULL_LEGS
+}
+
+model OnboardingResponse {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  goal          Goal
+  experience    Experience
+  frequency     Int
+  equipment     EquipmentTier
+  equipmentList Json?
+  limitations   Json          @default("[]")
+
+  age      Int?
+  sex      String?
+  weightKg Float?
+  heightCm Float?
+
+  createdAt DateTime @default(now())
+
+  generatedPlans GeneratedPlan[]
+
+  @@index([userId])
+}
+
+model GeneratedPlan {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  onboardingResponseId String
+  onboardingResponse   OnboardingResponse @relation(fields: [onboardingResponseId], references: [id], onDelete: Cascade)
+
+  splitType SplitType
+  summary   String
+  planData  Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Topic {
+  id                String @id @default(cuid())
+  slug              String @unique
+  title             String
+  shortDescription  String
+  category          String
+  simpleContent     String
+  scientificContent String
+  order             Int    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
