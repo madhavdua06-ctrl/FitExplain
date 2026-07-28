@@ -39,8 +39,8 @@ const TOTAL_STEPS = 4;
 const optionCard = (active: boolean) =>
   `flex cursor-pointer flex-col rounded-xl border p-4 transition ${
     active
-      ? "border-emerald-600 bg-emerald-50 dark:bg-emerald-950/30"
-      : "border-slate-200 dark:border-slate-700"
+      ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/30 dark:bg-emerald-950/30"
+      : "border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600"
   }`;
 const inputClass =
   "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800";
@@ -280,7 +280,7 @@ export function OnboardingWizard() {
             type="button"
             onClick={handleSubmit}
             disabled={isPending}
-            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60"
+            className="rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-600/25 transition hover:from-emerald-600 hover:to-teal-700 disabled:opacity-60"
           >
             {isPending ? "Generating your plan…" : "Generate my plan"}
           </button>

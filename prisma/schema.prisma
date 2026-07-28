@@ -26,6 +26,7 @@ model User {
 
   onboardingResponses OnboardingResponse[]
   generatedPlan       GeneratedPlan?
+  topicProgress       TopicProgress[]
 
   @@unique([email])
   @@map("user")
@@ -158,7 +159,23 @@ model Topic {
   scientificContent String
   order             Int     @default(0)
   sources           Json    @default("[]")
+  keyTakeaways      Json    @default("[]")
+  commonMistakes    Json    @default("[]")
+  faqs              Json    @default("[]")
+  quiz              Json    @default("[]")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model TopicProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicSlug String
+  quizScore Int?
+  completedAt DateTime @default(now())
+
+  @@unique([userId, topicSlug])
+  @@index([userId])
 }

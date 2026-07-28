@@ -206,6 +206,112 @@ export function TopicChart({ slug }: { slug: string }) {
         </ChartShell>
       );
 
+    case "macronutrients-101":
+      return (
+        <ChartShell title="Energy density by macronutrient" subtitle="Kcal per gram — established nutrition science constants, not estimates.">
+          <BarChart
+            yUnit=" kcal/g"
+            data={[
+              { label: "Protein", value: 4 },
+              { label: "Carbs", value: 4 },
+              { label: "Alcohol", value: 7 },
+              { label: "Fat", value: 9 },
+            ]}
+          />
+        </ChartShell>
+      );
+
+    case "doms-muscle-soreness":
+      return (
+        <ChartShell
+          title="Soreness intensity after a hard, unfamiliar workout"
+          subtitle="Illustrative — reflects the typical rise-and-fall pattern; exact intensity and duration vary widely by person and exercise."
+        >
+          <LineChart
+            yUnit=""
+            yFormat={(v) => `${v}`}
+            series={[
+              {
+                label: "Relative soreness",
+                colorVar: "--viz-series-2",
+                area: true,
+                data: [
+                  { x: "0h", y: 0 },
+                  { x: "24h", y: 6 },
+                  { x: "48h", y: 8 },
+                  { x: "72h", y: 5 },
+                  { x: "96h", y: 2 },
+                  { x: "120h", y: 1 },
+                ],
+              },
+            ]}
+          />
+        </ChartShell>
+      );
+
+    case "habit-formation":
+      return (
+        <ChartShell
+          title="How automatic a new habit feels over time"
+          subtitle="Illustrative curve shaped to match the real finding: automaticity plateaus at a median of 66 days (range 18–254) in controlled research."
+        >
+          <LineChart
+            yUnit="%"
+            yFormat={(v) => `${v}`}
+            series={[
+              {
+                label: "Automaticity",
+                colorVar: "--viz-series-1",
+                area: true,
+                data: [
+                  { x: "Day 1", y: 5 },
+                  { x: "Day 14", y: 25 },
+                  { x: "Day 30", y: 50 },
+                  { x: "Day 45", y: 68 },
+                  { x: "Day 66", y: 82 },
+                  { x: "Day 90", y: 92 },
+                  { x: "Day 120", y: 96 },
+                ],
+              },
+            ]}
+          />
+        </ChartShell>
+      );
+
+    case "injury-prevention":
+      return (
+        <ChartShell
+          title="Relative sports-injury rate, by training group"
+          subtitle="Index where the control group = 100. Reflects Lauersen et al. (2014): strength training reduced injuries to less than one-third of control rates."
+        >
+          <BarChart
+            yUnit=""
+            data={[
+              { label: "Control", value: 100, muted: true },
+              { label: "Strength training", value: 30 },
+            ]}
+          />
+        </ChartShell>
+      );
+
+    case "resistance-vs-cardio":
+      return (
+        <ChartShell
+          title="Body fat % reduction after 22 weeks, by training type"
+          subtitle="Real intention-to-treat results from the HEARTY trial in obese adolescents — not a general-adult dataset, see caveat below."
+        >
+          <BarChart
+            yUnit="%"
+            data={[
+              { label: "Control", value: 0.3, muted: true },
+              { label: "Aerobic only", value: 1.1 },
+              { label: "Combined", value: 1.4 },
+              { label: "Resistance only", value: 1.6 },
+            ]}
+          />
+        </ChartShell>
+      );
+
     default:
       return null;
   }

@@ -21,13 +21,27 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           >
             Topics
           </Link>
+          <Link
+            href="/tools"
+            className="hidden text-sm font-medium text-slate-600 transition hover:text-slate-900 sm:inline dark:text-slate-300 dark:hover:text-white"
+          >
+            Tools
+          </Link>
           {isLoggedIn ? (
-            <Link
-              href="/dashboard"
-              className="text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
-            >
-              Dashboard
-            </Link>
+            <>
+              <Link
+                href="/journey"
+                className="hidden text-sm font-medium text-slate-600 transition hover:text-slate-900 sm:inline dark:text-slate-300 dark:hover:text-white"
+              >
+                Journey
+              </Link>
+              <Link
+                href="/dashboard"
+                className="text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+              >
+                Dashboard
+              </Link>
+            </>
           ) : null}
 
           <ModeToggle />

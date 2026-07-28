@@ -1,8 +1,18 @@
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { TopicCard } from "@/components/topics/TopicCard";
 
 export default async function TopicsPage() {
-  const topics = await prisma.topic.findMany({ orderBy: { order: "asc" } });
+  const session = await auth.api.getSession({ headers: await headers() });
+
+  const [topics, progress] = await Promise.all([
+    prisma.topic.findMany({ orderBy: { order: "asc" } }),
+    session
+      ? prisma.topicProgress.findMany({ where: { userId: session.user.id }, select: { topicSlug: true } })
+      : Promise.resolve([]),
+  ]);
+  const completedSlugs = new Set(progress.map((p) => p.topicSlug));
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
@@ -16,6 +26,11 @@ export default async function TopicsPage() {
         Explained simply, or with the underlying science, charts, and cited studies — flip the toggle
         in the header anytime.
       </p>
+      {session ? (
+        <p className="mt-2 text-sm font-medium text-emerald-600">
+          {completedSlugs.size}/{topics.length} completed
+        </p>
+      ) : null}
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {topics.map((topic) => (
           <TopicCard
@@ -24,6 +39,7 @@ export default async function TopicsPage() {
             title={topic.title}
             shortDescription={topic.shortDescription}
             category={topic.category}
+            completed={completedSlugs.has(topic.slug)}
           />
         ))}
       </div>
