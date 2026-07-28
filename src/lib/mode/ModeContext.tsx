@@ -22,12 +22,10 @@ export function ModeProvider({
   const [mode, setMode] = useState<Mode>(initialMode);
 
   const toggleMode = useCallback(() => {
-    setMode((current) => {
-      const next: Mode = current === "simple" ? "scientific" : "simple";
-      void setModeAction(next);
-      return next;
-    });
-  }, []);
+    const next: Mode = mode === "simple" ? "scientific" : "simple";
+    setMode(next);
+    void setModeAction(next);
+  }, [mode]);
 
   return <ModeContext.Provider value={{ mode, toggleMode }}>{children}</ModeContext.Provider>;
 }
