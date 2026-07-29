@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { ModeText } from "@/components/ModeText";
 import { TopicChart } from "@/components/topics/TopicChart";
 import { Sources, type Source } from "@/components/topics/Sources";
 import { QuizCard } from "@/components/topics/QuizCard";
@@ -13,6 +12,8 @@ import { QuickFacts } from "@/components/topics/QuickFacts";
 import { TopicMotif } from "@/components/topics/TopicMotif";
 import { PrintButton } from "@/components/ui/PrintButton";
 import { SpeakButton } from "@/components/topics/SpeakButton";
+import { ReadAloudProvider } from "@/lib/readAloud/ReadAloudContext";
+import { ReadAloudText } from "@/components/topics/ReadAloudText";
 import { Conclusion } from "@/components/topics/Conclusion";
 import { TopicCard } from "@/components/topics/TopicCard";
 import { Tabs } from "@/components/ui/Tabs";
@@ -61,30 +62,13 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
   const faqs = (topic.faqs ?? []) as unknown as Faq[];
   const quiz = (topic.quiz ?? []) as unknown as QuizQuestion[];
   const quickFacts = (topic.quickFacts ?? []) as unknown as string[];
-  const simpleParagraphs = topic.simpleContent.split(/\n\n+/);
-  const scientificParagraphs = topic.scientificContent.split(/\n\n+/);
 
   const overviewTab = (
     <div className="space-y-8">
       <QuickFacts facts={quickFacts} />
 
       <div className="text-base leading-relaxed text-slate-700 dark:text-slate-300">
-        <ModeText
-          simple={
-            <div className="space-y-4">
-              {simpleParagraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
-          }
-          scientific={
-            <div className="space-y-4">
-              {scientificParagraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
-          }
-        />
+        <ReadAloudText />
       </div>
 
       {topic.conclusionSimple && topic.conclusionScientific ? (
@@ -169,29 +153,31 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
         ) : null}
       </div>
 
-      <div className="mt-3 flex items-start justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <TopicMotif slug={topic.slug} size="lg" />
-          <h1 className="text-3xl font-bold tracking-tight">
-            <span className="text-gradient">{topic.title}</span>
-          </h1>
+      <ReadAloudProvider simpleText={topic.simpleContent} scientificText={topic.scientificContent}>
+        <div className="mt-3 flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <TopicMotif slug={topic.slug} size="lg" />
+            <h1 className="text-3xl font-bold tracking-tight">
+              <span className="text-gradient">{topic.title}</span>
+            </h1>
+          </div>
+          <div className="flex shrink-0 gap-2">
+            <SpeakButton />
+            <PrintButton label="Print topic" />
+          </div>
         </div>
-        <div className="flex shrink-0 gap-2">
-          <SpeakButton simpleText={topic.simpleContent} scientificText={topic.scientificContent} />
-          <PrintButton label="Print topic" />
-        </div>
-      </div>
 
-      <div className="mt-8">
-        <Tabs
-          tabs={[
-            { id: "overview", label: "Overview", content: overviewTab },
-            { id: "mistakes", label: "Common Mistakes", content: mistakesTab },
-            { id: "faq", label: "FAQ", content: faqTab },
-            { id: "quiz", label: "Quiz", content: quizTab },
-          ]}
-        />
-      </div>
+        <div className="mt-8">
+          <Tabs
+            tabs={[
+              { id: "overview", label: "Overview", content: overviewTab },
+              { id: "mistakes", label: "Common Mistakes", content: mistakesTab },
+              { id: "faq", label: "FAQ", content: faqTab },
+              { id: "quiz", label: "Quiz", content: quizTab },
+            ]}
+          />
+        </div>
+      </ReadAloudProvider>
 
       {relatedTopics.length ? (
         <div className="no-print mt-10">

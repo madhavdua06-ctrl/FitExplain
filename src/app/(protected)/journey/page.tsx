@@ -106,18 +106,21 @@ export default async function JourneyPage() {
           label="Topics completed"
           sublabel={`${progress.length} of ${totalTopics}`}
           colorVar="--viz-series-1"
+          icon={<BookCheck className="h-4 w-4" />}
         />
         <RadialProgress
           percent={avgQuizScore > 0 ? (avgQuizScore / 3) * 100 : 0}
           label="Quiz mastery"
           sublabel={scoredProgress.length ? `Avg ${avgQuizScore.toFixed(1)}/3` : "No quizzes yet"}
           colorVar="--viz-series-2"
+          icon={<Trophy className="h-4 w-4" />}
         />
         <RadialProgress
           percent={Math.min(100, (streak / 7) * 100)}
           label="Streak progress"
           sublabel={streak > 0 ? `${streak}-day streak` : "Start today"}
           colorVar="--viz-series-1"
+          icon={<Flame className="h-4 w-4" />}
         />
       </div>
 
