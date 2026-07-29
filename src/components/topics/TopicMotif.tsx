@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Dumbbell,
   Footprints,
+  Apple,
 } from "lucide-react";
 
 const MOTIF_COLOR: Record<string, string> = {
@@ -27,6 +28,7 @@ const MOTIF_COLOR: Record<string, string> = {
   "habit-formation": "text-violet-500 dark:text-violet-400",
   "injury-prevention": "text-teal-500 dark:text-teal-400",
   "resistance-vs-cardio": "text-cyan-500 dark:text-cyan-400",
+  "vitamins-and-minerals": "text-lime-500 dark:text-lime-400",
 };
 
 function Rings({ delayed = false }: { delayed?: boolean }) {
@@ -161,6 +163,18 @@ function motifFor(slug: string, iconSize: number) {
         <>
           <Dumbbell size={iconSize} className="motif-crossfade-a absolute" strokeWidth={2} />
           <Footprints size={iconSize} className="motif-crossfade-b absolute" strokeWidth={2} />
+        </>
+      );
+
+    case "vitamins-and-minerals":
+      return (
+        <>
+          <span className="absolute inset-x-0 -bottom-1 flex items-center justify-center gap-1" aria-hidden>
+            <span className="motif-fill h-1 w-1 rounded-full bg-current" style={{ animationDelay: "0s" }} />
+            <span className="motif-fill h-1 w-1 rounded-full bg-current" style={{ animationDelay: "0.4s" }} />
+            <span className="motif-fill h-1 w-1 rounded-full bg-current" style={{ animationDelay: "0.8s" }} />
+          </span>
+          <Apple size={iconSize} className="relative" strokeWidth={2} />
         </>
       );
 

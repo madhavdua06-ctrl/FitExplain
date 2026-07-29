@@ -15,6 +15,11 @@ export const auth = betterAuth({
         defaultValue: "simple",
         input: false,
       },
+      hasSeenTutorial: {
+        type: "boolean",
+        defaultValue: false,
+        input: false,
+      },
     },
   },
   secret: process.env.BETTER_AUTH_SECRET,

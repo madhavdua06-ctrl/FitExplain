@@ -13,21 +13,26 @@ datasource db {
 }
 
 model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  mode          String?   @default("simple")
-  sessions      Session[]
-  accounts      Account[]
+  id              String    @id
+  name            String
+  email           String
+  emailVerified   Boolean   @default(false)
+  image           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  mode            String?   @default("simple")
+  hasSeenTutorial Boolean   @default(false)
+  sessions        Session[]
+  accounts        Account[]
 
   onboardingResponses OnboardingResponse[]
   generatedPlan       GeneratedPlan?
   topicProgress       TopicProgress[]
   bodyLogs            BodyLog[]
+  foodLogs            FoodLog[]
+  waterLogs           WaterLog[]
+  pushSubscriptions   PushSubscription[]
+  workoutLogs         WorkoutLog[]
 
   @@unique([email])
   @@map("user")
@@ -192,4 +197,55 @@ model BodyLog {
   loggedAt DateTime @default(now())
 
   @@index([userId])
+}
+
+model FoodLog {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  loggedAt       DateTime @default(now())
+  rawDescription String
+  calories       Float
+  proteinG       Float
+  carbsG         Float
+  fatG           Float
+  nutrients      Json
+
+  @@index([userId])
+  @@index([userId, loggedAt])
+}
+
+model WaterLog {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amountMl Float
+  loggedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([userId, loggedAt])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model WorkoutLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dayIndex    Int
+  dayLabel    String
+  completedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([userId, completedAt])
 }

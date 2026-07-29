@@ -5,6 +5,7 @@ import { CalendarDays, Utensils, HeartPulse, BookOpen } from "lucide-react";
 import { ModeText } from "@/components/ModeText";
 import { StatTile, StatRow } from "@/components/charts/StatTile";
 import { PrintButton } from "@/components/ui/PrintButton";
+import { MarkWorkoutCompleteButton } from "@/components/plan/MarkWorkoutCompleteButton";
 import { planExplanations } from "@/lib/plan/explanations";
 import type { PlanResult } from "@/lib/plan/types";
 
@@ -32,7 +33,13 @@ const FOCUS_ACCENT: Record<string, string> = {
   Legs: "bg-orange-500",
 };
 
-export function PlanView({ plan }: { plan: PlanResult }) {
+export function PlanView({
+  plan,
+  completedDayIndicesToday = [],
+}: {
+  plan: PlanResult;
+  completedDayIndicesToday?: number[];
+}) {
   const calorieValue =
     plan.nutrition.calorieDirection === "MAINTENANCE"
       ? "0%"
@@ -100,6 +107,11 @@ export function PlanView({ plan }: { plan: PlanResult }) {
                   </li>
                 ))}
               </ul>
+              <MarkWorkoutCompleteButton
+                dayIndex={day.day}
+                dayLabel={day.focus}
+                completedToday={completedDayIndicesToday.includes(day.day)}
+              />
             </div>
           ))}
         </div>

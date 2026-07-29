@@ -1425,6 +1425,117 @@ const topics = [
       },
     ],
   },
+  {
+    slug: "vitamins-and-minerals",
+    title: "Vitamins & Minerals",
+    shortDescription: "What they do, which ones people actually run short on, and why more isn't always better.",
+    category: "nutrition",
+    order: 13,
+    simpleContent:
+      "Vitamins and minerals are the nutrients your body needs in small amounts to keep everything running — energy production, immune defense, bone strength, nerve signaling, and hundreds of other processes. Unlike protein, carbs, and fat, you don't need much of any single one, but going without enough of even one can cause real problems over time.\n\nThere are two broad families of vitamins. Fat-soluble vitamins — A, D, E, and K — dissolve in fat and get stored in your liver and fatty tissue, so your body can hold onto a reserve for weeks or months. Water-soluble vitamins — the B vitamins and vitamin C — don't get stored the same way; your body uses what it needs and flushes the rest out in urine, so you generally need a fresh supply more often.\n\nMinerals split into major minerals your body needs in larger amounts (calcium, magnesium, potassium, sodium) and trace minerals needed in tiny amounts (iron, zinc, iodine, selenium). Both matter — trace doesn't mean unimportant, just that the required dose is small.\n\nFor most people eating a varied diet with plenty of fruits, vegetables, whole grains, and some animal or fortified foods, getting enough of everything isn't complicated. The shortfalls that actually show up in the real world tend to cluster around a handful of nutrients: vitamin D (especially in winter or for people who stay indoors), iron (especially in menstruating women), calcium, and vitamin B12 (especially for anyone eating a fully plant-based diet, since B12 comes almost exclusively from animal products).\n\nMore isn't automatically better. Because fat-soluble vitamins accumulate in the body, taking large megadoses of vitamin A or D from supplements can actually cause harm, not just waste money — unlike getting the same vitamins from food, where overdosing is extremely rare. A multivitamin can be a reasonable safety net, but it works best as a backstop for gaps you already suspect, not as a substitute for actually eating a varied diet.",
+    scientificContent:
+      "Vitamins are organic compounds the body cannot synthesize in adequate amounts (with a few exceptions, like vitamin D and niacin, which the body can partially produce) and must obtain from the diet. They are classified by solubility: fat-soluble vitamins (A, D, E, K) associate with dietary lipids for absorption via micelle formation in the small intestine and are transported through the lymphatic system before storage primarily in the liver and adipose tissue; water-soluble vitamins (the B-complex and vitamin C) are absorbed directly into the bloodstream and undergo renal clearance once tissue stores and plasma concentrations are saturated, giving them much shorter half-lives in the body.\n\nThis solubility distinction has direct clinical relevance. Because fat-soluble vitamins accumulate in tissue, chronic high-dose supplementation carries a genuine toxicity risk — hypervitaminosis A, for example, is associated with hepatotoxicity and teratogenic effects at high sustained intakes, and excess vitamin D can cause hypercalcemia. Water-soluble vitamin toxicity is comparatively rare because excess is renally excreted, though it is not impossible (e.g., high-dose vitamin B6 supplementation has been linked to peripheral neuropathy).\n\nRecommended intakes are set as Dietary Reference Intakes (DRIs) by the National Academies of Sciences, Engineering, and Medicine, which include the Recommended Dietary Allowance (RDA, the intake meeting the needs of ~97-98% of healthy individuals in a group) and the Tolerable Upper Intake Level (UL, the highest intake unlikely to cause adverse effects). These values are set separately by age and sex, since requirements shift meaningfully across the lifespan — for instance, iron RDA is markedly higher in menstruating women than in men due to menstrual blood loss.\n\nPopulation-level surveillance consistently identifies a small set of 'nutrients of public health concern' that a meaningful fraction of the population falls short on even in food-secure, high-income countries: vitamin D, calcium, potassium, and fiber are flagged as under-consumed in the U.S. Dietary Guidelines, while vitamin D deficiency (defined as serum 25-hydroxyvitamin D below 30 nmol/L) has been documented at high prevalence across multiple European countries regardless of latitude, implicating lifestyle (time spent indoors, sunscreen use, skin coverage) as much as geography.\n\nEvidence for broad multivitamin supplementation in nutritionally replete populations is notably weak. A 2022 U.S. Preventive Services Task Force systematic review found insufficient evidence that multivitamin or single/paired nutrient supplementation meaningfully reduces cardiovascular disease or cancer incidence in the general adult population, and recommended against beta-carotene and vitamin E supplementation specifically due to lack of benefit or potential harm. This supports a targeted approach — supplementing to correct an identified, tested deficiency — over blanket multivitamin use as primary prevention.",
+    quickFacts: [
+      "Vitamins A, D, E, and K are fat-soluble and stored in body fat — excess intake can build up to harmful levels.",
+      "Vitamin D deficiency is extremely common worldwide, even in sunny climates, due to modern indoor lifestyles.",
+      "More isn't always better — megadosing certain vitamins (like A or D) can be harmful, not just wasteful.",
+    ],
+    conclusionSimple:
+      "A varied whole-food diet covers most people's vitamin and mineral needs. The handful of nutrients people commonly fall short on — vitamin D, iron, calcium, B12 — are worth knowing about, but a supplement should fill a specific gap, not replace a good diet.",
+    conclusionScientific:
+      "Solubility class determines storage behavior and toxicity risk, DRIs (RDA and UL) formalize both the target and the ceiling, and current systematic-review evidence supports targeted repletion of identified deficiencies over blanket multivitamin supplementation for disease prevention in nutritionally replete adults.",
+    sources: [
+      {
+        authors: "Institute of Medicine (US) Committee to Review Dietary Reference Intakes for Vitamin D and Calcium",
+        year: 2011,
+        title: "Dietary Reference Intakes for Calcium and Vitamin D",
+        journal: "National Academies Press",
+        url: "https://www.ncbi.nlm.nih.gov/books/NBK56070/",
+        evidenceGrade: "strong",
+      },
+      {
+        authors: "Cashman KD, Dowling KG, Škrabáková Z, et al.",
+        year: 2016,
+        title: "Vitamin D deficiency in Europe: pandemic?",
+        journal: "American Journal of Clinical Nutrition",
+        url: "https://pubmed.ncbi.nlm.nih.gov/26864360/",
+        evidenceGrade: "moderate",
+      },
+      {
+        authors: "Mangione CM, Barry MJ, Nicholson WK, et al. (US Preventive Services Task Force)",
+        year: 2022,
+        title:
+          "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
+        journal: "JAMA",
+        url: "https://pubmed.ncbi.nlm.nih.gov/35727271/",
+        evidenceGrade: "strong",
+      },
+    ],
+    keyTakeaways: [
+      "Vitamins split into fat-soluble (A, D, E, K), which can accumulate to harmful levels, and water-soluble (B vitamins, C), which are excreted daily and need more frequent replenishing.",
+      "A varied whole-food diet covers most people's needs — supplements work best as a fix for a specific, identified shortfall, not as blanket insurance.",
+      "The nutrients people most commonly fall short on are vitamin D, iron (especially in women), calcium, and B12 (especially on a vegan diet).",
+    ],
+    commonMistakes: [
+      {
+        mistake: "Assuming more vitamins is always better",
+        fix: "Fat-soluble vitamins (A, D, E, K) accumulate in body fat — megadosing them can cause real toxicity, unlike water-soluble vitamins which are mostly excreted.",
+      },
+      {
+        mistake: "Taking a multivitamin instead of fixing a diet gap",
+        fix: "A multivitamin is a broad safety net, not a substitute for the specific nutrients — like vitamin D or iron — that a targeted blood test might reveal you're actually low on.",
+      },
+      {
+        mistake: "Ignoring how nutrients interact with absorption",
+        fix: "Some nutrients need help to absorb — vitamin D needs dietary fat, iron absorption is blocked by coffee/tea and boosted by vitamin C — so timing and pairing matters as much as total intake.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do I need to take a multivitamin?",
+        answer:
+          "Most people eating a varied diet don't need one — a 2022 US Preventive Services Task Force review found insufficient evidence that multivitamins prevent cancer or cardiovascular disease in healthy adults. They can still help fill a specific, identified gap, like vitamin D in winter or B12 on a vegan diet.",
+      },
+      {
+        question: "Can I get too much of a vitamin from food alone?",
+        answer:
+          "It's very rare to overdose on a vitamin from whole foods — toxicity almost always comes from concentrated supplements, especially high-dose vitamin A or iron pills.",
+      },
+      {
+        question: "Which vitamin deficiency is most common?",
+        answer:
+          "Vitamin D deficiency is extremely widespread worldwide, even in sunny regions, largely because modern lifestyles keep people indoors and covered up.",
+      },
+    ],
+    quiz: [
+      {
+        question: "Which of these vitamins is fat-soluble and can build up to harmful levels if megadosed?",
+        options: ["Vitamin C", "Vitamin B12", "Vitamin A", "Folate (B9)"],
+        correctIndex: 2,
+        explanation:
+          "Vitamin A is fat-soluble and stored in the liver — high-dose supplementation can cause toxicity, unlike water-soluble vitamins which are mostly excreted in urine.",
+      },
+      {
+        question: "What's the most common reason someone might genuinely need a vitamin or mineral supplement?",
+        options: [
+          "To generally 'boost' energy with no specific reason",
+          "An identified gap, like vitamin D in winter or iron with heavy periods",
+          "To prevent cancer in an otherwise healthy diet",
+          "Because supplements are always safer than food",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Supplements are most useful for closing a specific, identified nutritional gap — not as a general-purpose insurance policy.",
+      },
+      {
+        question: "Which nutrient deficiency is especially common in people eating a fully plant-based (vegan) diet?",
+        options: ["Vitamin C", "Vitamin B12", "Vitamin A", "Potassium"],
+        correctIndex: 1,
+        explanation:
+          "Vitamin B12 is found almost exclusively in animal products, so vegans need a supplement or fortified foods to avoid deficiency.",
+      },
+    ],
+  },
 ];
 
 async function main() {

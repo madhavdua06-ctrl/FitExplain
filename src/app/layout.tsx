@@ -6,6 +6,7 @@ import { ModeProvider, type Mode } from "@/lib/mode/ModeContext";
 import { ThemeProvider, type Theme } from "@/lib/theme/ThemeContext";
 import { ToastProvider } from "@/lib/toast/ToastContext";
 import { Header } from "@/components/layout/Header";
+import { TutorialOverlay } from "@/components/tutorial/TutorialOverlay";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,6 +42,10 @@ export default async function RootLayout({
 
   const initialTheme: Theme = cookieStore.get("fittheme")?.value === "light" ? "light" : "dark";
 
+  const showTutorial =
+    Boolean(session) &&
+    (session?.user as { hasSeenTutorial?: boolean } | undefined)?.hasSeenTutorial !== true;
+
   return (
     <html
       lang="en"
@@ -51,6 +56,7 @@ export default async function RootLayout({
           <ModeProvider initialMode={initialMode}>
             <ToastProvider>
               <Header isLoggedIn={Boolean(session)} />
+              <TutorialOverlay show={showTutorial} />
               <main className="flex-1">{children}</main>
             </ToastProvider>
           </ModeProvider>

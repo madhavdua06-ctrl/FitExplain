@@ -57,13 +57,13 @@ export default function HomePage() {
         <StatRow>
           <StatTile
             label="Topics covered"
-            value={<AnimatedNumber value={12} />}
+            value={<AnimatedNumber value={13} />}
             sub="Training, nutrition, recovery, mindset"
           />
           <StatTile label="Explanation depths" value={<AnimatedNumber value={2} />} sub="Simple & Scientific" />
           <StatTile
             label="Cited studies"
-            value={<AnimatedNumber value={25} suffix="+" />}
+            value={<AnimatedNumber value={28} suffix="+" />}
             sub="Peer-reviewed sources"
           />
           <StatTile

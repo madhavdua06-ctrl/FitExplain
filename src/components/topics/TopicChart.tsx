@@ -585,6 +585,26 @@ function chartsFor(slug: string): React.ReactNode[] {
         </ChartShell>,
       ];
 
+    case "vitamins-and-minerals":
+      return [
+        <ChartShell
+          key="under-consumed-nutrients"
+          title="Commonly under-consumed nutrients"
+          subtitle="Illustrative — approximate share of U.S. adults falling short of daily targets, based on dietary-survey patterns."
+        >
+          <BarChart
+            yUnit="%"
+            data={[
+              { label: "Vitamin D", value: 95, note: "The single most commonly under-consumed nutrient, largely due to limited sun exposure and few dietary sources." },
+              { label: "Calcium", value: 60, note: "Especially common in adults who consume little dairy or fortified alternatives." },
+              { label: "Potassium", value: 88, note: "Under-consumed even though it's found in many common foods like potatoes and bananas." },
+              { label: "Iron", value: 20, muted: true, note: "Shortfalls concentrate heavily in menstruating women rather than the population overall." },
+              { label: "Vitamin B12", value: 10, muted: true, note: "Low overall, but rises sharply in people eating a fully plant-based diet." },
+            ]}
+          />
+        </ChartShell>,
+      ];
+
     default:
       return [];
   }
