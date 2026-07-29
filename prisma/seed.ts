@@ -34,6 +34,7 @@ const topics = [
           "Dose-response relationship between weekly resistance training volume and increases in muscle mass: a systematic review and meta-analysis",
         journal: "Journal of Sports Sciences",
         url: "https://pubmed.ncbi.nlm.nih.gov/27433992/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Norton LE, Layman DK",
@@ -41,6 +42,7 @@ const topics = [
         title: "Leucine regulates translation initiation of protein synthesis in skeletal muscle after exercise",
         journal: "Journal of Nutrition",
         url: "https://pubmed.ncbi.nlm.nih.gov/16424142/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Williams TD, Tolusso DV, Fedewa MV, Esco MR",
@@ -48,6 +50,7 @@ const topics = [
         title: "Comparison of Periodized and Non-Periodized Resistance Training on Maximal Strength: A Meta-Analysis",
         journal: "Sports Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/28497285/",
+        evidenceGrade: "strong",
       },
     ],
     keyTakeaways: [
@@ -150,6 +153,7 @@ const topics = [
           "Timing and distribution of protein ingestion during prolonged recovery from resistance exercise alters myofibrillar protein synthesis",
         journal: "Journal of Physiology",
         url: "https://pubmed.ncbi.nlm.nih.gov/23459753/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Mamerow MM, Mettler JA, English KL, et al.",
@@ -157,6 +161,7 @@ const topics = [
         title: "Dietary protein distribution positively influences 24-h muscle protein synthesis in healthy adults",
         journal: "Journal of Nutrition",
         url: "https://pubmed.ncbi.nlm.nih.gov/24477298/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Morton RW, Murphy KT, McKellar SR, et al.",
@@ -165,6 +170,7 @@ const topics = [
           "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
         journal: "British Journal of Sports Medicine",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5867436",
+        evidenceGrade: "strong",
       },
       {
         authors: "Damas F, Phillips SM, Libardi CA, et al.",
@@ -173,6 +179,7 @@ const topics = [
           "Resistance training-induced changes in integrated myofibrillar protein synthesis are related to hypertrophy only after attenuation of muscle damage",
         journal: "Journal of Physiology",
         url: "https://pubmed.ncbi.nlm.nih.gov/27219125/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -266,6 +273,7 @@ const topics = [
         title: "Persistent metabolic adaptation 6 years after \"The Biggest Loser\" competition",
         journal: "Obesity",
         url: "https://pubmed.ncbi.nlm.nih.gov/27136388/",
+        evidenceGrade: "limited",
       },
       {
         authors: "Longland TM, Oikawa SY, Mitchell CJ, Devries MC, Phillips SM",
@@ -274,6 +282,7 @@ const topics = [
           "Higher compared with lower dietary protein during an energy deficit combined with intense exercise promotes greater lean mass gain and fat mass loss: a randomized trial",
         journal: "American Journal of Clinical Nutrition",
         url: "https://pubmed.ncbi.nlm.nih.gov/26817506/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Levine JA",
@@ -281,6 +290,7 @@ const topics = [
         title: "Nonexercise activity thermogenesis (NEAT): environment and biology",
         journal: "American Journal of Physiology-Endocrinology and Metabolism",
         url: "https://pubmed.ncbi.nlm.nih.gov/15102614/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -378,6 +388,7 @@ const topics = [
         title: "Cardiorespiratory Fitness and Mortality Risk Across the Spectra of Age, Race, and Sex",
         journal: "Journal of the American College of Cardiology",
         url: "https://pubmed.ncbi.nlm.nih.gov/35926933/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Kaminsky LA, Arena R, Myers J",
@@ -386,6 +397,7 @@ const topics = [
           "Reference Standards for Cardiorespiratory Fitness Measured With Cardiopulmonary Exercise Testing (the FRIEND Registry)",
         journal: "Mayo Clinic Proceedings",
         url: "https://pubmed.ncbi.nlm.nih.gov/26455884/",
+        evidenceGrade: "limited",
       },
       {
         authors: "Weatherwax RM, Nelson MB, Dalleck LC",
@@ -394,6 +406,7 @@ const topics = [
           "Individualized versus standardized exercise prescription on cardiorespiratory fitness: a randomized controlled trial",
         journal: "Journal of Sports Science and Medicine",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915607",
+        evidenceGrade: "strong",
       },
       {
         authors: "Helgerud J, Høydal K, Wang E, et al.",
@@ -401,6 +414,7 @@ const topics = [
         title: "Aerobic high-intensity intervals improve VO2max more than moderate training",
         journal: "Medicine & Science in Sports & Exercise",
         url: "https://pubmed.ncbi.nlm.nih.gov/17414804/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Fleg JL, Morrell CH, Bos AG, et al.",
@@ -408,6 +422,7 @@ const topics = [
         title: "Accelerated longitudinal decline of aerobic capacity in healthy older adults",
         journal: "Circulation",
         url: "https://pubmed.ncbi.nlm.nih.gov/16043637/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -510,6 +525,7 @@ const topics = [
         title: "Human Growth Hormone Release: Relation to Slow-Wave Sleep and Sleep-Waking Cycles",
         journal: "Science",
         url: "https://pubmed.ncbi.nlm.nih.gov/4307378/",
+        evidenceGrade: "limited",
       },
       {
         authors: "Lamon S, Morabito A, Arentson-Lantz E, et al.",
@@ -517,6 +533,7 @@ const topics = [
         title: "The effect of acute sleep deprivation on skeletal muscle protein synthesis and the hormonal environment",
         journal: "Physiological Reports",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7785053/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Leproult R, Van Cauter E",
@@ -524,6 +541,7 @@ const topics = [
         title: "Effect of 1 Week of Sleep Restriction on Testosterone Levels in Young Healthy Men",
         journal: "JAMA",
         url: "https://pubmed.ncbi.nlm.nih.gov/21632481/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -620,6 +638,7 @@ const topics = [
         title: "American College of Sports Medicine position stand: Exercise and Fluid Replacement",
         journal: "Medicine & Science in Sports & Exercise",
         url: "https://pubmed.ncbi.nlm.nih.gov/17277604/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Cheuvront SN, Kenefick RW",
@@ -627,6 +646,7 @@ const topics = [
         title: "Dehydration: Physiology, Assessment, and Performance Effects",
         journal: "Comprehensive Physiology",
         url: "https://pubmed.ncbi.nlm.nih.gov/24692140/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Ganio MS, Armstrong LE, Casa DJ, et al.",
@@ -634,6 +654,7 @@ const topics = [
         title: "Mild dehydration impairs cognitive performance and mood of men",
         journal: "British Journal of Nutrition",
         url: "https://pubmed.ncbi.nlm.nih.gov/21736786/",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Baker LB",
@@ -641,6 +662,7 @@ const topics = [
         title: "Sweating Rate and Sweat Sodium Concentration in Athletes: A Review of Methodology and Intra/Interindividual Variability",
         journal: "Sports Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/28332116/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -738,6 +760,7 @@ const topics = [
           "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
         journal: "Journal of the International Society of Sports Nutrition",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5469049/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Grgic J, Grgic I, Pickering C, Schoenfeld BJ, Bishop DJ, Pedisic Z",
@@ -746,6 +769,7 @@ const topics = [
           "Wake up and smell the coffee: caffeine supplementation and exercise performance — an umbrella review of 21 published meta-analyses",
         journal: "British Journal of Sports Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/30926628/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Cohen PA, Zakharevich I, Gerona R",
@@ -753,6 +777,7 @@ const topics = [
         title: "Prohibited Stimulants Found in Sport and Weight-Loss Supplements",
         journal: "JAMA Network Open",
         url: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2807343",
+        evidenceGrade: "moderate",
       },
       {
         authors: "de Souza E Silva A, Pertille A, Reis Barbosa CG, et al.",
@@ -760,6 +785,7 @@ const topics = [
         title: "Effects of Creatine Supplementation on Renal Function: A Systematic Review and Meta-Analysis",
         journal: "Journal of Renal Nutrition",
         url: "https://pubmed.ncbi.nlm.nih.gov/31375416/",
+        evidenceGrade: "strong",
       },
     ],
     keyTakeaways: [
@@ -861,6 +887,7 @@ const topics = [
           "Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids (Macronutrients)",
         journal: "National Academies Press",
         url: "https://www.nationalacademies.org/read/10490",
+        evidenceGrade: "strong",
       },
       {
         authors: "Sacks FM, Bray GA, Carey VJ, et al.",
@@ -868,6 +895,7 @@ const topics = [
         title: "Comparison of Weight-Loss Diets with Different Compositions of Fat, Protein, and Carbohydrates",
         journal: "New England Journal of Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/19246357/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Westerterp KR",
@@ -875,6 +903,7 @@ const topics = [
         title: "Diet induced thermogenesis",
         journal: "Nutrition & Metabolism",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC524030/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -965,6 +994,7 @@ const topics = [
         title: "Delayed onset muscle soreness: mechanisms and management",
         journal: "Journal of Sports Sciences",
         url: "https://pubmed.ncbi.nlm.nih.gov/1518094/",
+        evidenceGrade: "limited",
       },
       {
         authors: "Guo J, Li L, Gong Y, Zhu R, Xu J, Zou J, Chen X",
@@ -972,6 +1002,7 @@ const topics = [
         title: "Massage Alleviates Delayed Onset Muscle Soreness after Strenuous Exercise: A Systematic Review and Meta-Analysis",
         journal: "Frontiers in Physiology",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5623674/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Zhou J, Jia D, Mao J, Xu Y",
@@ -979,6 +1010,7 @@ const topics = [
         title: "Preventive effect of foam rolling on muscle soreness after exercise: A systematic review and meta-analysis",
         journal: "Journal of Bodywork and Movement Therapies",
         url: "https://pubmed.ncbi.nlm.nih.gov/39593540/",
+        evidenceGrade: "strong",
       },
     ],
     keyTakeaways: [
@@ -1079,6 +1111,7 @@ const topics = [
         title: "How are habits formed: Modelling habit formation in the real world",
         journal: "European Journal of Social Psychology",
         url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.674",
+        evidenceGrade: "moderate",
       },
       {
         authors: "Teixeira PJ, Carraça EV, Markland D, Silva MN, Ryan RM",
@@ -1086,6 +1119,7 @@ const topics = [
         title: "Exercise, physical activity, and self-determination theory: a systematic review",
         journal: "International Journal of Behavioral Nutrition and Physical Activity",
         url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3441783/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Kaushal N, Rhodes RE",
@@ -1093,6 +1127,7 @@ const topics = [
         title: "Exercise habit formation in new gym members: a longitudinal study",
         journal: "Journal of Behavioral Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/25851609/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -1189,6 +1224,7 @@ const topics = [
           "The effectiveness of exercise interventions to prevent sports injuries: a systematic review and meta-analysis of randomised controlled trials",
         journal: "British Journal of Sports Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/24100287/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Soligard T, Myklebust G, Steffen K, et al.",
@@ -1197,6 +1233,7 @@ const topics = [
           "Comprehensive warm-up programme to prevent injuries in young female footballers: cluster randomised controlled trial",
         journal: "BMJ",
         url: "https://pubmed.ncbi.nlm.nih.gov/19066253/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Gabbett TJ",
@@ -1204,6 +1241,7 @@ const topics = [
         title: "The training-injury prevention paradox: should athletes be training smarter and harder?",
         journal: "British Journal of Sports Medicine",
         url: "https://pubmed.ncbi.nlm.nih.gov/26758673/",
+        evidenceGrade: "moderate",
       },
     ],
     keyTakeaways: [
@@ -1300,6 +1338,7 @@ const topics = [
           "Effects of Aerobic Training, Resistance Training, or Both on Percentage Body Fat and Cardiometabolic Risk Markers in Obese Adolescents: The HEARTY Randomized Clinical Trial",
         journal: "JAMA Pediatrics",
         url: "https://pubmed.ncbi.nlm.nih.gov/25243536/",
+        evidenceGrade: "strong",
       },
       {
         authors: "Lafontant K, Rukstela A, Hanson A, et al.",
@@ -1307,6 +1346,7 @@ const topics = [
         title: "Comparison of concurrent, resistance, or aerobic training on body fat loss: a systematic review and meta-analysis",
         journal: "Journal of the International Society of Sports Nutrition",
         url: "https://www.tandfonline.com/doi/full/10.1080/15502783.2025.2507949",
+        evidenceGrade: "strong",
       },
       {
         authors: "MacKenzie-Shalders K, Kelly JT, So D, Coffey VG, Byrne NM",
@@ -1314,6 +1354,7 @@ const topics = [
         title: "The effect of exercise interventions on resting metabolic rate: A systematic review and meta-analysis",
         journal: "Journal of Sports Sciences",
         url: "https://pubmed.ncbi.nlm.nih.gov/32397898/",
+        evidenceGrade: "strong",
       },
     ],
     keyTakeaways: [

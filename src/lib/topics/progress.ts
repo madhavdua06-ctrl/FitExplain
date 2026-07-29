@@ -2,6 +2,10 @@ function toDayKey(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
+export function daysAgo(n: number): Date {
+  return new Date(Date.now() - n * 24 * 60 * 60 * 1000);
+}
+
 export function computeStreak(completedDates: Date[]): number {
   if (completedDates.length === 0) return 0;
 

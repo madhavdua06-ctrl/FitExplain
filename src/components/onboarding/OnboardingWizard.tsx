@@ -113,6 +113,7 @@ export function OnboardingWizard() {
         ))}
       </div>
 
+      <div key={step} className="animate-fade-in-up">
       {step === 1 ? (
         <fieldset className="space-y-3">
           <legend className="mb-2 text-lg font-semibold">What&apos;s your main goal?</legend>
@@ -254,6 +255,7 @@ export function OnboardingWizard() {
           </div>
         </fieldset>
       ) : null}
+      </div>
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
@@ -271,7 +273,7 @@ export function OnboardingWizard() {
             type="button"
             onClick={() => canProceed() && setStep((s) => s + 1)}
             disabled={!canProceed()}
-            className="glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-50"
+            className="btn-pop glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-50"
           >
             Next
           </button>
@@ -280,7 +282,7 @@ export function OnboardingWizard() {
             type="button"
             onClick={handleSubmit}
             disabled={isPending}
-            className="glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-60"
+            className="btn-pop glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-60"
           >
             {isPending ? "Generating your plan…" : "Generate my plan"}
           </button>

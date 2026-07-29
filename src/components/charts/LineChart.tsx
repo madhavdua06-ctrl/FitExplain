@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { niceTicks } from "./chartMath";
 
 interface Point {
@@ -36,6 +36,8 @@ export function LineChart({
   zeroBaseline?: boolean;
 }) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+  const uid = useId().replace(/[:]/g, "");
+  const glowId = `line-glow-${uid}`;
 
   const points = series[0].data;
   const n = points.length;
@@ -58,6 +60,9 @@ export function LineChart({
     return `${line} L ${xAt(data.length - 1)} ${yAt(domainMin)} L ${xAt(0)} ${yAt(domainMin)} Z`;
   };
 
+  const gradIdFor = (colorVar: string) => `line-area-${colorVar.replace(/[^a-zA-Z0-9]/g, "")}-${uid}`;
+  const uniqueColorVars = [...new Set(series.map((s) => s.colorVar))];
+
   function handleMove(e: React.MouseEvent<SVGRectElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
     const relX = ((e.clientX - rect.left) / rect.width) * WIDTH;
@@ -71,6 +76,21 @@ export function LineChart({
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" role="img" aria-label="Line chart">
+        <defs>
+          {uniqueColorVars.map((cv) => (
+            <linearGradient key={cv} id={gradIdFor(cv)} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={`var(${cv})`} stopOpacity={0.35} />
+              <stop offset="100%" stopColor={`var(${cv})`} stopOpacity={0} />
+            </linearGradient>
+          ))}
+          <filter id={glowId} x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         {ticks.map((t) => (
           <g key={t}>
             <line
@@ -118,19 +138,48 @@ export function LineChart({
         {series.map(
           (s) =>
             s.area && (
-              <path key={`${s.label}-area`} d={areaFor(s.data)} fill={`var(${s.colorVar})`} opacity={0.1} />
+              <path
+                key={`${s.label}-area`}
+                d={areaFor(s.data)}
+                fill={`url(#${gradIdFor(s.colorVar)})`}
+                className="animate-area-fade-in"
+              />
             ),
         )}
-        {series.map((s) => (
+        {series.map((s, si) => (
           <path
             key={s.label}
             d={pathFor(s.data)}
             fill="none"
             stroke={`var(${s.colorVar})`}
-            strokeWidth={2}
+            strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
+            filter={`url(#${glowId})`}
+            pathLength={1}
+            strokeDasharray={1}
+            className="animate-line-draw"
+            style={{ animationDelay: `${si * 150}ms` }}
           />
+        ))}
+        {series.map((s) => (
+          <g key={`${s.label}-markers`}>
+            {s.data.map((p, i) =>
+              i > 0 && i < s.data.length - 1 ? (
+                <circle
+                  key={i}
+                  cx={xAt(i)}
+                  cy={yAt(p.y)}
+                  r={3.5}
+                  fill="var(--viz-surface)"
+                  stroke={`var(${s.colorVar})`}
+                  strokeWidth={2}
+                  className="animate-marker-pop"
+                  style={{ animationDelay: `${1.1 + i * 0.05}s` }}
+                />
+              ) : null,
+            )}
+          </g>
         ))}
         {series.map((s) => {
           const last = s.data[s.data.length - 1];

@@ -1,7 +1,19 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import Link from "next/link";
-import { CheckCircle2, Circle, ArrowRight, Compass, Footprints, Trophy, Flame, BookCheck, Scale, Award } from "lucide-react";
+import {
+  CheckCircle2,
+  Circle,
+  ArrowRight,
+  Compass,
+  Footprints,
+  Trophy,
+  Flame,
+  BookCheck,
+  Scale,
+  Award,
+  GraduationCap,
+} from "lucide-react";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { computeStreak } from "@/lib/topics/progress";
@@ -24,6 +36,12 @@ export default async function JourneyPage() {
   const streak = computeStreak(progress.map((p) => p.completedAt));
   const topicsPct = totalTopics > 0 ? Math.round((progress.length / totalTopics) * 100) : 0;
   const hasPerfectQuiz = progress.some((p) => (p.quizScore ?? 0) >= 3);
+  const scoredProgress = progress.filter((p) => p.quizScore !== null);
+  const avgQuizScore = scoredProgress.length
+    ? scoredProgress.reduce((sum, p) => sum + (p.quizScore ?? 0), 0) / scoredProgress.length
+    : 0;
+  const isCompletionist = totalTopics > 0 && progress.length === totalTopics;
+  const isCertified = isCompletionist && avgQuizScore >= 2.5;
 
   const badges = [
     { icon: Footprints, label: "First Steps", achieved: progress.length >= 1 },
@@ -31,7 +49,8 @@ export default async function JourneyPage() {
     { icon: Flame, label: "On a Streak", achieved: streak >= 3 },
     { icon: BookCheck, label: "Halfway There", achieved: totalTopics > 0 && progress.length >= totalTopics / 2 },
     { icon: Scale, label: "Tracking Progress", achieved: bodyLogCount >= 3 },
-    { icon: Award, label: "Completionist", achieved: totalTopics > 0 && progress.length === totalTopics },
+    { icon: Award, label: "Completionist", achieved: isCompletionist },
+    { icon: GraduationCap, label: "FitExplain Certified", achieved: isCertified },
   ];
 
   const steps: {

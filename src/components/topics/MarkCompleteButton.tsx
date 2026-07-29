@@ -10,7 +10,7 @@ export function MarkCompleteButton({ slug, completed }: { slug: string; complete
 
   if (isDone) {
     return (
-      <span className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600">
+      <span className="animate-pop-in inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600">
         <CheckCircle2 className="h-4 w-4" aria-hidden />
         Completed
       </span>

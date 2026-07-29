@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { niceTicks } from "./chartMath";
 
 export interface BarDatum {
@@ -27,6 +27,10 @@ export function BarChart({
   yFormat?: (v: number) => string;
 }) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+  const uid = useId().replace(/[:]/g, "");
+  const gradId = `bar-grad-${uid}`;
+  const gradMutedId = `bar-grad-muted-${uid}`;
+  const glowId = `bar-glow-${uid}`;
 
   const n = data.length;
   const values = data.map((d) => d.value);
@@ -42,6 +46,23 @@ export function BarChart({
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full" role="img" aria-label="Bar chart">
+        <defs>
+          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--viz-series-1)" stopOpacity={1} />
+            <stop offset="100%" stopColor="var(--viz-series-1)" stopOpacity={0.55} />
+          </linearGradient>
+          <linearGradient id={gradMutedId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--viz-text-muted)" stopOpacity={0.85} />
+            <stop offset="100%" stopColor="var(--viz-text-muted)" stopOpacity={0.4} />
+          </linearGradient>
+          <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         {ticks.map((t) => (
           <g key={t}>
             <line
@@ -77,7 +98,8 @@ export function BarChart({
           const x = cx - barW / 2;
           const topY = yAt(d.value);
           const h = HEIGHT - PAD.bottom - topY;
-          const color = d.muted ? "var(--viz-text-muted)" : "var(--viz-series-1)";
+          const fill = d.muted ? `url(#${gradMutedId})` : `url(#${gradId})`;
+          const solidColor = d.muted ? "var(--viz-text-muted)" : "var(--viz-series-1)";
           const isHover = hoverIdx === i;
           return (
             <g
@@ -86,17 +108,24 @@ export function BarChart({
               onMouseLeave={() => setHoverIdx(null)}
               style={{ cursor: "pointer" }}
             >
-              <rect x={x} y={topY} width={barW} height={h} rx={RADIUS} fill={color} opacity={isHover ? 0.85 : 1} />
-              {h > RADIUS ? (
-                <rect
-                  x={x}
-                  y={HEIGHT - PAD.bottom - RADIUS}
-                  width={barW}
-                  height={RADIUS}
-                  fill={color}
-                  opacity={isHover ? 0.85 : 1}
-                />
-              ) : null}
+              <g
+                className="animate-bar-grow"
+                style={{ animationDelay: `${i * 90}ms` }}
+                filter={isHover ? `url(#${glowId})` : undefined}
+              >
+                <rect x={x} y={topY} width={barW} height={h} rx={RADIUS} fill={fill} opacity={isHover ? 0.95 : 1} />
+                {h > RADIUS ? (
+                  <rect
+                    x={x}
+                    y={HEIGHT - PAD.bottom - RADIUS}
+                    width={barW}
+                    height={RADIUS}
+                    fill={fill}
+                    opacity={isHover ? 0.95 : 1}
+                  />
+                ) : null}
+                <rect x={x} y={topY} width={barW} height={Math.min(3, h)} rx={1.5} fill="white" opacity={0.35} />
+              </g>
               <text
                 x={cx}
                 y={topY - 8}
@@ -117,6 +146,9 @@ export function BarChart({
               >
                 {d.label}
               </text>
+              {isHover ? (
+                <circle cx={cx} cy={HEIGHT - PAD.bottom + 4} r={3} fill={solidColor} />
+              ) : null}
               <rect
                 x={PAD.left + slot * i}
                 y={PAD.top}
@@ -130,12 +162,18 @@ export function BarChart({
       </svg>
       {hoverIdx !== null ? (
         <div
-          className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+28px)] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-900 shadow-md dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+          className="pointer-events-none absolute z-10 flex -translate-x-1/2 -translate-y-[calc(100%+28px)] items-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white"
           style={{
             left: `${(xCenter(hoverIdx) / WIDTH) * 100}%`,
             top: `${(yAt(data[hoverIdx].value) / HEIGHT) * 100}%`,
           }}
         >
+          <span
+            className="inline-block h-2 w-2 shrink-0 rounded-full"
+            style={{
+              backgroundColor: data[hoverIdx].muted ? "var(--viz-text-muted)" : "var(--viz-series-1)",
+            }}
+          />
           {data[hoverIdx].label}: {yFormat(data[hoverIdx].value)}
           {yUnit}
         </div>

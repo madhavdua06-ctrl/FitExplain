@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CalendarDays, Utensils, HeartPulse, BookOpen } from "lucide-react";
 import { ModeText } from "@/components/ModeText";
 import { StatTile, StatRow } from "@/components/charts/StatTile";
+import { PrintButton } from "@/components/ui/PrintButton";
 import { planExplanations } from "@/lib/plan/explanations";
 import type { PlanResult } from "@/lib/plan/types";
 
@@ -40,10 +41,13 @@ export function PlanView({ plan }: { plan: PlanResult }) {
   return (
     <div className="mx-auto max-w-3xl space-y-10 px-4 py-12">
       <section>
-        <h1 className="text-3xl font-bold tracking-tight">
-          <span className="text-slate-900 dark:text-white">Your Plan: </span>
-          <span className="text-gradient">{SPLIT_LABELS[plan.splitType]}</span>
-        </h1>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="text-3xl font-bold tracking-tight">
+            <span className="text-slate-900 dark:text-white">Your Plan: </span>
+            <span className="text-gradient">{SPLIT_LABELS[plan.splitType]}</span>
+          </h1>
+          <PrintButton />
+        </div>
         <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-300">
           {plan.rationaleKeys.map((key) => {
             const explanation = planExplanations[key];
@@ -144,7 +148,7 @@ export function PlanView({ plan }: { plan: PlanResult }) {
         </ul>
       </section>
 
-      <div className="border-t border-slate-200 pt-6 dark:border-white/10">
+      <div className="no-print border-t border-slate-200 pt-6 dark:border-white/10">
         <Link
           href="/onboarding"
           className="text-sm font-medium text-cyan-600 hover:underline dark:text-cyan-400"

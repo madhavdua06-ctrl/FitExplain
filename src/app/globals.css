@@ -170,13 +170,279 @@ body {
   transform-origin: bottom;
 }
 
+/* Topic motif primitives — small looping SVG/CSS motion, standing in for a
+   GIF-style animated visual per topic (no external image/GIF assets are
+   fetched anywhere on this site). */
+
+@keyframes motif-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.motif-ring {
+  animation: motif-ping 2.4s cubic-bezier(0.2, 0.7, 0.4, 1) infinite;
+  transform-origin: center;
+}
+
+@keyframes motif-bar-rise {
+  0%, 100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.motif-bar {
+  animation: motif-bar-rise 1.8s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+@keyframes motif-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+.motif-sweep {
+  animation: motif-sweep 2.6s ease-in-out infinite;
+}
+
+@keyframes motif-twinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.motif-twinkle {
+  animation: motif-twinkle 1.8s ease-in-out infinite;
+}
+
+@keyframes motif-tilt {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+.motif-tilt {
+  animation: motif-tilt 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes motif-fill {
+  0%, 15% {
+    opacity: 0.2;
+  }
+  35%, 100% {
+    opacity: 1;
+  }
+}
+.motif-fill {
+  animation: motif-fill 2.4s ease-in-out infinite;
+}
+
+@keyframes motif-crossfade-a {
+  0%, 40% {
+    opacity: 1;
+  }
+  50%, 90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes motif-crossfade-b {
+  0%, 40% {
+    opacity: 0;
+  }
+  50%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.motif-crossfade-a {
+  animation: motif-crossfade-a 3.2s ease-in-out infinite;
+}
+.motif-crossfade-b {
+  animation: motif-crossfade-b 3.2s ease-in-out infinite;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .bg-grid {
+    background-image: none !important;
+  }
+  .glass,
+  .glow-cyan,
+  .glow-violet {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    background: white !important;
+    border: 1px solid #ccc !important;
+  }
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.animate-bar-grow {
+  animation: bar-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-line-draw {
+  animation: line-draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes marker-pop {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-marker-pop {
+  animation: marker-pop 0.3s ease-out backwards;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes area-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-area-fade-in {
+  animation: area-fade-in 1s ease-out backwards;
+}
+
+/* Nav underline + button micro-interactions — small user-triggered feedback,
+   left active even under reduced-motion (only ambient/autoplaying motion is
+   gated below). */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: currentColor;
+  transition: transform 0.25s ease;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-pop {
+  transition: transform 0.15s ease;
+}
+.btn-pop:hover {
+  transform: translateY(-1px) scale(1.03);
+}
+.btn-pop:active {
+  transform: scale(0.96);
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-6deg) scale(1.08);
+  }
+}
+.logo-link:hover .logo-badge {
+  animation: logo-pulse 0.5s ease-in-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-shake,
+  .logo-link:hover .logo-badge {
+    animation: none;
+  }
   .animate-drift,
   .animate-drift-slow,
   .animate-pulse-glow,
   .animate-chart-in,
   .animate-fade-in-up,
-  .animate-pop-in {
+  .animate-pop-in,
+  .motif-ring,
+  .motif-bar,
+  .motif-sweep,
+  .motif-twinkle,
+  .motif-tilt,
+  .motif-fill,
+  .motif-crossfade-a,
+  .motif-crossfade-b {
     animation: none;
+  }
+  .animate-bar-grow,
+  .animate-marker-pop,
+  .animate-area-fade-in {
+    animation: none;
+  }
+  .animate-line-draw {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }

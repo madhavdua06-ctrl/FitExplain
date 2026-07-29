@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { CheckCircle2, XCircle, Trophy } from "lucide-react";
 import { submitQuiz } from "@/lib/topics/actions";
+import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import type { QuizQuestion } from "@/lib/topics/types";
 
 export function QuizCard({
@@ -64,9 +65,9 @@ export function QuizCard({
                   className={`flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-2.5 text-left text-sm transition ${
                     submitted
                       ? isCorrect
-                        ? "border-emerald-500 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-950/30"
+                        ? "animate-pop-in border-emerald-500 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-950/30"
                         : isSelected
-                          ? "border-red-400 bg-red-50 dark:border-red-800 dark:bg-red-950/30"
+                          ? "animate-shake border-red-400 bg-red-50 dark:border-red-800 dark:bg-red-950/30"
                           : "border-slate-200 dark:border-slate-700"
                       : isSelected
                         ? "border-indigo-500 bg-indigo-50 dark:border-indigo-700 dark:bg-indigo-950/30"
@@ -75,10 +76,10 @@ export function QuizCard({
                 >
                   <span className="text-slate-700 dark:text-slate-200">{option}</span>
                   {submitted && isCorrect ? (
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
+                    <CheckCircle2 className="animate-pop-in h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
                   ) : null}
                   {submitted && isSelected && !isCorrect ? (
-                    <XCircle className="h-4 w-4 shrink-0 text-red-500" aria-hidden />
+                    <XCircle className="animate-pop-in h-4 w-4 shrink-0 text-red-500" aria-hidden />
                   ) : null}
                 </button>
               );
@@ -97,16 +98,18 @@ export function QuizCard({
           type="button"
           onClick={handleSubmit}
           disabled={!allAnswered}
-          className="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-600/20 transition hover:bg-indigo-700 disabled:opacity-50"
+          className="btn-pop w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm shadow-indigo-600/20 transition hover:bg-indigo-700 disabled:opacity-50"
         >
           {allAnswered ? "Check my answers" : `Answer all ${questions.length} questions to continue`}
         </button>
       ) : (
         <div className="animate-pop-in flex items-center gap-3 rounded-xl border border-indigo-200 bg-indigo-50 p-4 dark:border-indigo-900 dark:bg-indigo-950/30">
-          <Trophy className="h-6 w-6 shrink-0 text-indigo-600" aria-hidden />
+          <span className="animate-pulse-glow flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/50">
+            <Trophy className="h-5 w-5 text-indigo-600 dark:text-indigo-400" aria-hidden />
+          </span>
           <div>
             <p className="font-semibold text-slate-900 dark:text-white">
-              You scored {score}/{questions.length}
+              You scored <AnimatedNumber value={score} />/{questions.length}
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-400">
               {isLoggedIn

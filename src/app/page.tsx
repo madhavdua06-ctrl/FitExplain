@@ -37,14 +37,14 @@ export default function HomePage() {
             <div className="mt-8 flex items-center justify-center gap-4">
               <Link
                 href="/signup"
-                className="glow-cyan group inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:from-cyan-400 hover:via-blue-400 hover:to-violet-500"
+                className="btn-pop glow-cyan group inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:from-cyan-400 hover:via-blue-400 hover:to-violet-500"
               >
                 Get your plan
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
               </Link>
               <Link
                 href="/topics"
-                className="glass rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-cyan-400/50 dark:text-slate-200"
+                className="btn-pop glass rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-cyan-400/50 dark:text-slate-200"
               >
                 Browse topics
               </Link>

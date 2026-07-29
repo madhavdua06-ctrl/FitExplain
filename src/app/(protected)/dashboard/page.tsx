@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PlanView } from "@/components/plan/PlanView";
 import { ProgressSummary } from "@/components/topics/ProgressSummary";
+import { WeeklyRecap } from "@/components/topics/WeeklyRecap";
 import { BodyTracker } from "@/components/body/BodyTracker";
 import type { PlanResult } from "@/lib/plan/types";
 
@@ -18,6 +19,7 @@ export default async function DashboardPage() {
     <div>
       <div className="mx-auto max-w-3xl space-y-4 px-4 pt-8">
         <ProgressSummary userId={session.user.id} />
+        <WeeklyRecap userId={session.user.id} />
         <BodyTracker userId={session.user.id} />
       </div>
       <PlanView plan={plan.planData as unknown as PlanResult} />

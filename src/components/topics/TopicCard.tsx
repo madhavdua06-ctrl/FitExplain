@@ -1,19 +1,6 @@
 import Link from "next/link";
-import { Dumbbell, Apple, Moon, Brain, ArrowUpRight, CheckCircle2, type LucideIcon } from "lucide-react";
-
-const CATEGORY_ICON: Record<string, LucideIcon> = {
-  training: Dumbbell,
-  nutrition: Apple,
-  recovery: Moon,
-  mindset: Brain,
-};
-
-const CATEGORY_STYLE: Record<string, string> = {
-  training: "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400",
-  nutrition: "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
-  recovery: "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400",
-  mindset: "bg-violet-50 text-violet-600 dark:bg-violet-950/40 dark:text-violet-400",
-};
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { TopicMotif } from "@/components/topics/TopicMotif";
 
 const CATEGORY_ACCENT: Record<string, string> = {
   training: "from-emerald-400 to-teal-500",
@@ -35,8 +22,6 @@ export function TopicCard({
   category: string;
   completed?: boolean;
 }) {
-  const Icon = CATEGORY_ICON[category] ?? Dumbbell;
-  const badgeStyle = CATEGORY_STYLE[category] ?? CATEGORY_STYLE.training;
   const accent = CATEGORY_ACCENT[category] ?? CATEGORY_ACCENT.training;
 
   return (
@@ -46,9 +31,7 @@ export function TopicCard({
     >
       <span className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accent}`} aria-hidden />
       <div className="flex items-start justify-between">
-        <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${badgeStyle}`}>
-          <Icon className="h-5 w-5" aria-hidden />
-        </span>
+        <TopicMotif slug={slug} size="sm" />
         {completed ? (
           <span className="flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
             <CheckCircle2 className="h-3 w-3" aria-hidden />

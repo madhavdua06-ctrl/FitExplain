@@ -1,11 +1,45 @@
 import { BookOpen } from "lucide-react";
 
+export type EvidenceGrade = "strong" | "moderate" | "limited";
+
 export interface Source {
   authors: string;
   year: number;
   title: string;
   journal: string;
   url: string;
+  evidenceGrade?: EvidenceGrade;
+}
+
+const GRADE_LABEL: Record<EvidenceGrade, string> = {
+  strong: "Strong evidence",
+  moderate: "Moderate evidence",
+  limited: "Limited evidence",
+};
+
+const GRADE_STYLE: Record<EvidenceGrade, string> = {
+  strong:
+    "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400",
+  moderate:
+    "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400",
+  limited: "bg-slate-100 text-slate-500 dark:bg-white/5 dark:text-slate-400",
+};
+
+function EvidenceBadge({ grade }: { grade: EvidenceGrade }) {
+  return (
+    <span
+      className={`ml-1.5 inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${GRADE_STYLE[grade]}`}
+      title={
+        grade === "strong"
+          ? "Meta-analysis, large RCT, or systematic review"
+          : grade === "moderate"
+            ? "A single RCT, cohort study, or expert position stand"
+            : "Small, older, or narrative-review-level evidence"
+      }
+    >
+      {GRADE_LABEL[grade]}
+    </span>
+  );
 }
 
 export function Sources({ sources }: { sources: Source[] }) {
@@ -30,6 +64,7 @@ export function Sources({ sources }: { sources: Source[] }) {
             </a>
             {" — "}
             {source.authors} ({source.year}). <em>{source.journal}</em>.
+            {source.evidenceGrade ? <EvidenceBadge grade={source.evidenceGrade} /> : null}
           </li>
         ))}
       </ol>

@@ -52,6 +52,19 @@ function chartsFor(slug: string): React.ReactNode[] {
             ]}
           />
         </ChartShell>,
+        <ChartShell
+          key="periodization-effect"
+          title="Periodization's effect on strength gains (1RM)"
+          subtitle="Real meta-analytic effect size across resistance-training studies, both statistically significant (p<0.001) — Williams et al. 2017."
+        >
+          <BarChart
+            yUnit=" ES"
+            data={[
+              { label: "Raw effect size", value: 0.43 },
+              { label: "Bias-corrected", value: 0.23, muted: true },
+            ]}
+          />
+        </ChartShell>,
       ];
 
     case "muscle-protein-synthesis":
@@ -155,6 +168,19 @@ function chartsFor(slug: string): React.ReactNode[] {
             ]}
           />
         </ChartShell>,
+        <ChartShell
+          key="metabolic-adaptation"
+          title="Resting metabolic rate suppression below original baseline"
+          subtitle="Real data, The Biggest Loser contestants: competition finale vs. 6 years later. Raw RMR decrease, not adjusted for body-composition change — Fothergill et al. 2016."
+        >
+          <BarChart
+            yUnit=" kcal/day"
+            data={[
+              { label: "At competition finale", value: 610, muted: true },
+              { label: "6 years later", value: 704 },
+            ]}
+          />
+        </ChartShell>,
       ];
 
     case "vo2-max":
@@ -219,6 +245,19 @@ function chartsFor(slug: string): React.ReactNode[] {
             ]}
           />
         </ChartShell>,
+        <ChartShell
+          key="sleep-testosterone"
+          title="Daytime testosterone after 1 week of sleep restriction"
+          subtitle="Real RCT data, healthy young men: 10-hour vs. 5-hour nightly sleep opportunities — Leproult & Van Cauter 2011, JAMA."
+        >
+          <BarChart
+            yUnit=" nmol/L"
+            data={[
+              { label: "10-hr sleep (baseline)", value: 18.4 },
+              { label: "5-hr sleep (restricted)", value: 16.5, muted: true },
+            ]}
+          />
+        </ChartShell>,
       ];
 
     case "hydration":
@@ -245,6 +284,19 @@ function chartsFor(slug: string): React.ReactNode[] {
                   { x: "5%", y: 20 },
                 ],
               },
+            ]}
+          />
+        </ChartShell>,
+        <ChartShell
+          key="sweat-rate-range"
+          title="Sweat rate range across individuals"
+          subtitle="Real reported range for whole-body sweat rate during exercise — Baker 2017. Genetics, heat acclimatization, fitness, body size, and sex all drive this variability."
+        >
+          <BarChart
+            yUnit=" L/hr"
+            data={[
+              { label: "Lower end", value: 0.5 },
+              { label: "Higher end", value: 2.0 },
             ]}
           />
         </ChartShell>,
@@ -286,6 +338,20 @@ function chartsFor(slug: string): React.ReactNode[] {
             ]}
           />
         </ChartShell>,
+        <ChartShell
+          key="thermic-effect"
+          title="Thermic effect of food, by macronutrient"
+          subtitle="Real data — share of each macronutrient's own calories spent on digestion (upper end of each reported range) — Westerterp 2004."
+        >
+          <BarChart
+            yUnit="%"
+            data={[
+              { label: "Fat", value: 3, muted: true },
+              { label: "Carbohydrate", value: 10 },
+              { label: "Protein", value: 30 },
+            ]}
+          />
+        </ChartShell>,
       ];
 
     case "doms-muscle-soreness":
@@ -310,6 +376,29 @@ function chartsFor(slug: string): React.ReactNode[] {
                   { x: "72h", y: 5 },
                   { x: "96h", y: 2 },
                   { x: "120h", y: 1 },
+                ],
+              },
+            ]}
+          />
+        </ChartShell>,
+        <ChartShell
+          key="foam-rolling-effect"
+          title="Foam rolling's soreness-reduction effect, by time post-exercise"
+          subtitle="Real effect size (SMD) from a 2024 meta-analysis of 16 RCTs — larger = greater reduction in soreness. Zhou et al. 2024."
+        >
+          <LineChart
+            yUnit=""
+            yFormat={(v) => `${v}`}
+            series={[
+              {
+                label: "Reduction effect size",
+                colorVar: "--viz-series-1",
+                area: true,
+                data: [
+                  { x: "Immediate", y: 0.38 },
+                  { x: "24h", y: 0.53 },
+                  { x: "48h", y: 0.77 },
+                  { x: "72h", y: 0.67 },
                 ],
               },
             ]}
@@ -345,6 +434,19 @@ function chartsFor(slug: string): React.ReactNode[] {
             ]}
           />
         </ChartShell>,
+        <ChartShell
+          key="habit-frequency-dosage"
+          title="Reaching habit formation by week 6, by exercise frequency"
+          subtitle="Real data, new gym members: ≥4x/week vs. <4x/week in their first 6 weeks — Kaushal & Rhodes 2015."
+        >
+          <BarChart
+            yUnit="%"
+            data={[
+              { label: "<4x/week", value: 44.8, muted: true },
+              { label: "≥4x/week", value: 61.5 },
+            ]}
+          />
+        </ChartShell>,
       ];
 
     case "injury-prevention":
@@ -359,6 +461,31 @@ function chartsFor(slug: string): React.ReactNode[] {
             data={[
               { label: "Control", value: 100, muted: true },
               { label: "Strength training", value: 30 },
+            ]}
+          />
+        </ChartShell>,
+        <ChartShell
+          key="acwr-sweet-spot"
+          title="Injury risk by training-load ratio (ACWR)"
+          subtitle="Illustrative curve shaped to Gabbett 2016's reported pattern: risk is lowest in the ~0.8–1.3 'sweet spot' and rises sharply outside it."
+        >
+          <LineChart
+            yUnit=""
+            yFormat={(v) => `${v}`}
+            series={[
+              {
+                label: "Relative injury risk",
+                colorVar: "--viz-series-2",
+                area: true,
+                data: [
+                  { x: "0.5", y: 70 },
+                  { x: "0.8", y: 25 },
+                  { x: "1.0", y: 15 },
+                  { x: "1.3", y: 20 },
+                  { x: "1.6", y: 55 },
+                  { x: "2.0", y: 85 },
+                ],
+              },
             ]}
           />
         </ChartShell>,

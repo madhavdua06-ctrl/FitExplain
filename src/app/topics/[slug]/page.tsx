@@ -10,6 +10,9 @@ import { Sources, type Source } from "@/components/topics/Sources";
 import { QuizCard } from "@/components/topics/QuizCard";
 import { MarkCompleteButton } from "@/components/topics/MarkCompleteButton";
 import { QuickFacts } from "@/components/topics/QuickFacts";
+import { TopicMotif } from "@/components/topics/TopicMotif";
+import { PrintButton } from "@/components/ui/PrintButton";
+import { SpeakButton } from "@/components/topics/SpeakButton";
 import { Conclusion } from "@/components/topics/Conclusion";
 import { TopicCard } from "@/components/topics/TopicCard";
 import { Tabs } from "@/components/ui/Tabs";
@@ -166,9 +169,18 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
         ) : null}
       </div>
 
-      <h1 className="mt-1 text-3xl font-bold tracking-tight">
-        <span className="text-gradient">{topic.title}</span>
-      </h1>
+      <div className="mt-3 flex items-start justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <TopicMotif slug={topic.slug} size="lg" />
+          <h1 className="text-3xl font-bold tracking-tight">
+            <span className="text-gradient">{topic.title}</span>
+          </h1>
+        </div>
+        <div className="flex shrink-0 gap-2">
+          <SpeakButton simpleText={topic.simpleContent} scientificText={topic.scientificContent} />
+          <PrintButton label="Print topic" />
+        </div>
+      </div>
 
       <div className="mt-8">
         <Tabs
@@ -182,7 +194,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </div>
 
       {relatedTopics.length ? (
-        <div className="mt-10">
+        <div className="no-print mt-10">
           <h2 className="text-sm font-semibold text-slate-900 dark:text-white">Related topics</h2>
           <div className="mt-3 grid gap-4 sm:grid-cols-3">
             {relatedTopics.map((t, i) => (
@@ -202,7 +214,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
 
       <Link
         href={`/topics/${nextTopic.slug}`}
-        className="glass group mt-6 flex items-center justify-between rounded-2xl p-5 transition hover:border-cyan-400/50"
+        className="no-print glass group mt-6 flex items-center justify-between rounded-2xl p-5 transition hover:border-cyan-400/50"
       >
         <div>
           <span className="text-xs font-medium uppercase tracking-wide text-slate-400">Next up</span>
