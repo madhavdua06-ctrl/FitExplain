@@ -18,6 +18,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { computeStreak } from "@/lib/topics/progress";
 import { AchievementBadges } from "@/components/topics/AchievementBadges";
+import { RadialProgress } from "@/components/charts/RadialProgress";
 
 export default async function JourneyPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -98,6 +99,27 @@ export default async function JourneyPage() {
       <p className="mt-2 text-slate-600 dark:text-slate-300">
         Your path from sign-up to a fitness routine you actually understand.
       </p>
+
+      <div className="glass mt-6 flex flex-wrap justify-around gap-6 rounded-2xl p-5">
+        <RadialProgress
+          percent={topicsPct}
+          label="Topics completed"
+          sublabel={`${progress.length} of ${totalTopics}`}
+          colorVar="--viz-series-1"
+        />
+        <RadialProgress
+          percent={avgQuizScore > 0 ? (avgQuizScore / 3) * 100 : 0}
+          label="Quiz mastery"
+          sublabel={scoredProgress.length ? `Avg ${avgQuizScore.toFixed(1)}/3` : "No quizzes yet"}
+          colorVar="--viz-series-2"
+        />
+        <RadialProgress
+          percent={Math.min(100, (streak / 7) * 100)}
+          label="Streak progress"
+          sublabel={streak > 0 ? `${streak}-day streak` : "Start today"}
+          colorVar="--viz-series-1"
+        />
+      </div>
 
       <div className="mt-8">
         {steps.map((step, i) => (

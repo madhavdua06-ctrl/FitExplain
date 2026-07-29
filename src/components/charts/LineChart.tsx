@@ -6,6 +6,7 @@ import { niceTicks } from "./chartMath";
 interface Point {
   x: string;
   y: number;
+  note?: string;
 }
 
 export interface LineSeries {
@@ -124,7 +125,7 @@ export function LineChart({
         {points.map((p, i) =>
           i % labelStep === 0 ? (
             <text
-              key={p.x}
+              key={i}
               x={xAt(i)}
               y={HEIGHT - PAD.bottom + 18}
               textAnchor="middle"
@@ -244,7 +245,9 @@ export function LineChart({
       </svg>
       {hoverIdx !== null ? (
         <div
-          className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+10px)] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs shadow-md dark:border-slate-700 dark:bg-slate-900"
+          className={`animate-pop-in pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+10px)] rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs shadow-lg dark:border-slate-700 dark:bg-slate-900 ${
+            points[hoverIdx].note ? "w-56" : "whitespace-nowrap"
+          }`}
           style={{
             left: `${(xAt(hoverIdx) / WIDTH) * 100}%`,
             top: `${(Math.min(...series.map((s) => yAt(s.data[hoverIdx!].y))) / HEIGHT) * 100}%`,
@@ -261,6 +264,9 @@ export function LineChart({
               {yUnit}
             </div>
           ))}
+          {points[hoverIdx].note ? (
+            <p className="mt-1 leading-snug text-slate-500 dark:text-slate-400">{points[hoverIdx].note}</p>
+          ) : null}
         </div>
       ) : null}
     </div>

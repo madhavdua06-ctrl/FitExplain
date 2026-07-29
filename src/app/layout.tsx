@@ -4,6 +4,7 @@ import { cookies, headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { ModeProvider, type Mode } from "@/lib/mode/ModeContext";
 import { ThemeProvider, type Theme } from "@/lib/theme/ThemeContext";
+import { ToastProvider } from "@/lib/toast/ToastContext";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -48,8 +49,10 @@ export default async function RootLayout({
       <body className="bg-grid min-h-full flex flex-col">
         <ThemeProvider initialTheme={initialTheme}>
           <ModeProvider initialMode={initialMode}>
-            <Header isLoggedIn={Boolean(session)} />
-            <main className="flex-1">{children}</main>
+            <ToastProvider>
+              <Header isLoggedIn={Boolean(session)} />
+              <main className="flex-1">{children}</main>
+            </ToastProvider>
           </ModeProvider>
         </ThemeProvider>
       </body>

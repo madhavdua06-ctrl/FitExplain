@@ -3,10 +3,12 @@
 import { useState, useTransition } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { markTopicComplete } from "@/lib/topics/actions";
+import { useToast } from "@/lib/toast/ToastContext";
 
 export function MarkCompleteButton({ slug, completed }: { slug: string; completed: boolean }) {
   const [isDone, setIsDone] = useState(completed);
   const [isPending, startTransition] = useTransition();
+  const { showToast } = useToast();
 
   if (isDone) {
     return (
@@ -25,6 +27,7 @@ export function MarkCompleteButton({ slug, completed }: { slug: string; complete
         startTransition(async () => {
           await markTopicComplete(slug);
           setIsDone(true);
+          showToast("Topic marked as complete — nice work!", "success");
         })
       }
       className="text-sm font-medium text-slate-500 underline decoration-slate-300 underline-offset-2 transition hover:text-emerald-600 hover:decoration-emerald-600 dark:text-slate-400"

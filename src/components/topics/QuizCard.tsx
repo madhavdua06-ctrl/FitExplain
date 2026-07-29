@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { CheckCircle2, XCircle, Trophy } from "lucide-react";
 import { submitQuiz } from "@/lib/topics/actions";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
+import { useToast } from "@/lib/toast/ToastContext";
 import type { QuizQuestion } from "@/lib/topics/types";
 
 export function QuizCard({
@@ -18,6 +19,7 @@ export function QuizCard({
   const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null));
   const [submitted, setSubmitted] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const { showToast } = useToast();
 
   if (!questions.length) return null;
 
@@ -35,6 +37,11 @@ export function QuizCard({
 
   function handleSubmit() {
     setSubmitted(true);
+    const perfect = score === questions.length;
+    showToast(
+      perfect ? `Perfect score! ${score}/${questions.length} 🎉` : `Quiz submitted — you scored ${score}/${questions.length}.`,
+      perfect ? "celebrate" : "info",
+    );
     if (isLoggedIn) {
       startTransition(async () => {
         await submitQuiz(slug, score);

@@ -27,26 +27,26 @@ function chartsFor(slug: string): React.ReactNode[] {
                 label: "Progressive overload",
                 colorVar: "--viz-series-1",
                 data: [
-                  { x: "Wk 1", y: 0 },
-                  { x: "Wk 3", y: 4 },
-                  { x: "Wk 5", y: 8 },
-                  { x: "Wk 7", y: 13 },
-                  { x: "Wk 9", y: 17 },
-                  { x: "Wk 11", y: 21 },
-                  { x: "Wk 12", y: 23 },
+                  { x: "Wk 1", y: 0, note: "Baseline strength before any added stimulus." },
+                  { x: "Wk 3", y: 4, note: "Early gains come fast — mostly neural efficiency, not new muscle yet." },
+                  { x: "Wk 5", y: 8, note: "Steady climb as load, reps, or sets keep rising week over week." },
+                  { x: "Wk 7", y: 13, note: "Gains keep compounding because the stimulus never stalls." },
+                  { x: "Wk 9", y: 17, note: "The gap vs. a static routine is now clearly widening." },
+                  { x: "Wk 11", y: 21, note: "Near the end of the block — sustained rising demand still paying off." },
+                  { x: "Wk 12", y: 23, note: "12-week total: roughly 23% relative strength gain in this model." },
                 ],
               },
               {
                 label: "Same load every week",
                 colorVar: "--viz-text-muted",
                 data: [
-                  { x: "Wk 1", y: 0 },
-                  { x: "Wk 3", y: 3 },
-                  { x: "Wk 5", y: 4 },
-                  { x: "Wk 7", y: 4 },
-                  { x: "Wk 9", y: 4 },
-                  { x: "Wk 11", y: 4 },
-                  { x: "Wk 12", y: 4 },
+                  { x: "Wk 1", y: 0, note: "Same starting point as the overload group." },
+                  { x: "Wk 3", y: 3, note: "A brief initial bump — still some adaptation to a new routine." },
+                  { x: "Wk 5", y: 4, note: "Progress has already nearly stalled without a rising stimulus." },
+                  { x: "Wk 7", y: 4, note: "Flat — the body has no new signal to keep adapting to." },
+                  { x: "Wk 9", y: 4, note: "This is the plateau progressive overload is designed to avoid." },
+                  { x: "Wk 11", y: 4, note: "Still flat after 11 weeks of unchanging demand." },
+                  { x: "Wk 12", y: 4, note: "Ends near +4% — a fraction of what rising overload produced." },
                 ],
               },
             ]}
@@ -60,8 +60,17 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" ES"
             data={[
-              { label: "Raw effect size", value: 0.43 },
-              { label: "Bias-corrected", value: 0.23, muted: true },
+              {
+                label: "Raw effect size",
+                value: 0.43,
+                note: "The initial pooled effect size favoring periodized over non-periodized training, before correcting for publication bias.",
+              },
+              {
+                label: "Bias-corrected",
+                value: 0.23,
+                muted: true,
+                note: "After removing outlier studies flagged by bias testing — smaller, but still a real, statistically significant edge.",
+              },
             ]}
           />
         </ChartShell>,
@@ -83,13 +92,13 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-1",
                 area: true,
                 data: [
-                  { x: "0h", y: 0 },
-                  { x: "1h", y: 45 },
-                  { x: "2h", y: 90 },
-                  { x: "3h", y: 100 },
-                  { x: "4h", y: 70 },
-                  { x: "5h", y: 30 },
-                  { x: "6h", y: 10 },
+                  { x: "0h", y: 0, note: "Right after eating — the amino-acid signal hasn't kicked in yet." },
+                  { x: "1h", y: 45, note: "MPS is already rising fast as leucine crosses the per-meal threshold." },
+                  { x: "2h", y: 90, note: "Approaching peak — most of the meal's protein is now being put to use." },
+                  { x: "3h", y: 100, note: "Peak muscle protein synthesis for this meal." },
+                  { x: "4h", y: 70, note: "Response starts tapering as amino acid availability declines." },
+                  { x: "5h", y: 30, note: "Mostly back toward baseline — this is part of why spacing meals matters." },
+                  { x: "6h", y: 10, note: "Response has nearly fully faded — a good time for the next protein dose." },
                 ],
               },
             ]}
@@ -110,11 +119,11 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-1",
                 area: true,
                 data: [
-                  { x: "0.5 g/kg", y: 40 },
-                  { x: "1.0 g/kg", y: 75 },
-                  { x: "1.6 g/kg", y: 100 },
-                  { x: "2.2 g/kg", y: 104 },
-                  { x: "3.0 g/kg", y: 105 },
+                  { x: "0.5 g/kg", y: 40, note: "Well below typical needs — muscle-building potential is left on the table here." },
+                  { x: "1.0 g/kg", y: 75, note: "Better, but still under the intake most lifters should target." },
+                  { x: "1.6 g/kg", y: 100, note: "The point estimate where added protein stops producing meaningfully more gains." },
+                  { x: "2.2 g/kg", y: 104, note: "Upper end of the 95% CI — only marginal extra benefit over 1.6g/kg." },
+                  { x: "3.0 g/kg", y: 105, note: "Well past the plateau — extra protein here isn't harmful, just unnecessary for muscle gain." },
                 ],
               },
             ]}
@@ -143,26 +152,26 @@ function chartsFor(slug: string): React.ReactNode[] {
                 label: "Actual (with adaptation)",
                 colorVar: "--viz-series-1",
                 data: [
-                  { x: "Wk 0", y: 0 },
-                  { x: "Wk 2", y: 1.8 },
-                  { x: "Wk 4", y: 3.3 },
-                  { x: "Wk 6", y: 4.5 },
-                  { x: "Wk 8", y: 5.4 },
-                  { x: "Wk 10", y: 6.1 },
-                  { x: "Wk 12", y: 6.6 },
+                  { x: "Wk 0", y: 0, note: "Starting weight, before the deficit begins." },
+                  { x: "Wk 2", y: 1.8, note: "Early loss often runs a bit faster — partly water weight." },
+                  { x: "Wk 4", y: 3.3, note: "Still tracking close to the naive projection at this point." },
+                  { x: "Wk 6", y: 4.5, note: "Adaptive thermogenesis is starting to slow real-world progress." },
+                  { x: "Wk 8", y: 5.4, note: "The gap vs. the straight-line projection keeps widening." },
+                  { x: "Wk 10", y: 6.1, note: "Metabolic adaptation means fewer calories are now needed to maintain the deficit." },
+                  { x: "Wk 12", y: 6.6, note: "12-week total — well under naive math's predicted 12%, and that's expected." },
                 ],
               },
               {
                 label: "Naive projection",
                 colorVar: "--viz-text-muted",
                 data: [
-                  { x: "Wk 0", y: 0 },
-                  { x: "Wk 2", y: 2 },
-                  { x: "Wk 4", y: 4 },
-                  { x: "Wk 6", y: 6 },
-                  { x: "Wk 8", y: 8 },
-                  { x: "Wk 10", y: 10 },
-                  { x: "Wk 12", y: 12 },
+                  { x: "Wk 0", y: 0, note: "Same starting point." },
+                  { x: "Wk 2", y: 2, note: "Straight-line math: deficit ÷ 7700 kcal per kg fat, no adaptation." },
+                  { x: "Wk 4", y: 4, note: "This line assumes metabolism never adjusts — it always does in reality." },
+                  { x: "Wk 6", y: 6, note: "Naive projections like this are why weight loss can feel 'behind schedule.'" },
+                  { x: "Wk 8", y: 8, note: "Still just extrapolating the original deficit with no slowdown." },
+                  { x: "Wk 10", y: 10, note: "The widening gap here is the real cost of ignoring adaptation." },
+                  { x: "Wk 12", y: 12, note: "Naive math predicts double the actual 12-week result." },
                 ],
               },
             ]}
@@ -176,8 +185,17 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" kcal/day"
             data={[
-              { label: "At competition finale", value: 610, muted: true },
-              { label: "6 years later", value: 704 },
+              {
+                label: "At competition finale",
+                value: 610,
+                muted: true,
+                note: "Resting metabolic rate right after the extreme weight loss — already well below the original baseline.",
+              },
+              {
+                label: "6 years later",
+                value: 704,
+                note: "Even after most weight was regained, RMR suppression didn't recover — it actually deepened slightly.",
+              },
             ]}
           />
         </ChartShell>,
@@ -193,10 +211,10 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=""
             data={[
-              { label: "Sedentary", value: 35 },
-              { label: "Recreational", value: 45 },
-              { label: "Trained", value: 55 },
-              { label: "Elite endurance", value: 75 },
+              { label: "Sedentary", value: 35, note: "Typical for an inactive adult doing little to no structured cardio." },
+              { label: "Recreational", value: 45, note: "Consistent with regular casual cardio a few times a week." },
+              { label: "Trained", value: 55, note: "Reflects structured endurance training over months to years." },
+              { label: "Elite endurance", value: 75, note: "Elite endurance athletes — genetics plus years of specific training." },
             ]}
           />
         </ChartShell>,
@@ -208,8 +226,17 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" mL/kg/min"
             data={[
-              { label: "Standardized", value: 3.1, muted: true },
-              { label: "Personalized", value: 4.85 },
+              {
+                label: "Standardized",
+                value: 3.1,
+                muted: true,
+                note: "A generic heart-rate-reserve program — real gains, but noticeably smaller.",
+              },
+              {
+                label: "Personalized",
+                value: 4.85,
+                note: "Training intensity individualized to each person's own physiological thresholds — roughly 56% more gain.",
+              },
             ]}
           />
         </ChartShell>,
@@ -231,15 +258,15 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-1",
                 area: true,
                 data: [
-                  { x: "0h", y: 1 },
-                  { x: "1h", y: 4 },
-                  { x: "2h", y: 5 },
-                  { x: "3h", y: 2 },
-                  { x: "4h", y: 1.5 },
-                  { x: "5h", y: 1 },
-                  { x: "6h", y: 1 },
-                  { x: "7h", y: 0.8 },
-                  { x: "8h", y: 0.5 },
+                  { x: "0h", y: 1, note: "Just after falling asleep — baseline secretion." },
+                  { x: "1h", y: 4, note: "Rising fast as the first slow-wave (deep) sleep episode begins." },
+                  { x: "2h", y: 5, note: "Peak growth hormone pulse — the biggest release of the night." },
+                  { x: "3h", y: 2, note: "Sharp drop-off after the first deep-sleep window closes." },
+                  { x: "4h", y: 1.5, note: "Secretion has mostly normalized by this point." },
+                  { x: "5h", y: 1, note: "Back near baseline — later sleep cycles release far less GH." },
+                  { x: "6h", y: 1, note: "Staying low — this is why cutting sleep short at the front costs the most." },
+                  { x: "7h", y: 0.8, note: "Minimal additional GH release this late in the night." },
+                  { x: "8h", y: 0.5, note: "Lowest point, near waking — most of the night's repair signal already happened hours ago." },
                 ],
               },
             ]}
@@ -253,8 +280,17 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" nmol/L"
             data={[
-              { label: "10-hr sleep (baseline)", value: 18.4 },
-              { label: "5-hr sleep (restricted)", value: 16.5, muted: true },
+              {
+                label: "10-hr sleep (baseline)",
+                value: 18.4,
+                note: "Daytime testosterone after a stretch of full, unrestricted sleep.",
+              },
+              {
+                label: "5-hr sleep (restricted)",
+                value: 16.5,
+                muted: true,
+                note: "Just one week of short sleep — a 10-15% drop, comparable to roughly a decade of aging.",
+              },
             ]}
           />
         </ChartShell>,
@@ -276,12 +312,12 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-2",
                 area: true,
                 data: [
-                  { x: "0%", y: 0 },
-                  { x: "1%", y: 2 },
-                  { x: "2%", y: 5 },
-                  { x: "3%", y: 9 },
-                  { x: "4%", y: 14 },
-                  { x: "5%", y: 20 },
+                  { x: "0%", y: 0, note: "Fully hydrated — no measurable performance cost." },
+                  { x: "1%", y: 2, note: "Mild fluid loss — often not yet noticeable subjectively." },
+                  { x: "2%", y: 5, note: "ACSM's commonly cited threshold where decrements start reliably appearing." },
+                  { x: "3%", y: 9, note: "The decrement curve is accelerating, not flat, from here on." },
+                  { x: "4%", y: 14, note: "Meaningful performance cost — cardiovascular strain and thermoregulation are both compromised." },
+                  { x: "5%", y: 20, note: "Substantial dehydration — a fifth of performance capacity lost in this illustrative model." },
                 ],
               },
             ]}
@@ -295,8 +331,8 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" L/hr"
             data={[
-              { label: "Lower end", value: 0.5 },
-              { label: "Higher end", value: 2.0 },
+              { label: "Lower end", value: 0.5, note: "Typical low end for a smaller, less heat-acclimated person in a cooler session." },
+              { label: "Higher end", value: 2.0, note: "Well-acclimated, larger, or high-intensity athletes can sweat this much or more per hour." },
             ]}
           />
         </ChartShell>,
@@ -312,10 +348,27 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit="%"
             data={[
-              { label: "Accurately labeled", value: 11 },
-              { label: "Prohibited stimulant found", value: 12 },
-              { label: "No listed ingredient detected", value: 40 },
-              { label: "Inaccurately labeled (any)", value: 89, muted: true },
+              {
+                label: "Accurately labeled",
+                value: 11,
+                note: "Only about 1 in 9 tested products matched their label for all 5 tested ingredients.",
+              },
+              {
+                label: "Prohibited stimulant found",
+                value: 12,
+                note: "Roughly 1 in 8 products contained a banned stimulant not disclosed on the label.",
+              },
+              {
+                label: "No listed ingredient detected",
+                value: 40,
+                note: "A listed botanical/stimulant ingredient was simply missing from the actual product in 40% of cases.",
+              },
+              {
+                label: "Inaccurately labeled (any)",
+                value: 89,
+                muted: true,
+                note: "The overall failure rate — inaccurate for at least one of the 5 tested ingredients.",
+              },
             ]}
           />
         </ChartShell>,
@@ -331,10 +384,10 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" kcal/g"
             data={[
-              { label: "Protein", value: 4 },
-              { label: "Carbs", value: 4 },
-              { label: "Alcohol", value: 7 },
-              { label: "Fat", value: 9 },
+              { label: "Protein", value: 4, note: "Same energy density as carbs, but used mainly for tissue repair, not fuel." },
+              { label: "Carbs", value: 4, note: "The body's preferred quick-energy source, especially for hard exercise." },
+              { label: "Alcohol", value: 7, note: "Often overlooked in calorie counts — nearly double protein or carbs per gram." },
+              { label: "Fat", value: 9, note: "More than double protein or carbs — why fat-heavy foods add up fast." },
             ]}
           />
         </ChartShell>,
@@ -346,9 +399,9 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit="%"
             data={[
-              { label: "Fat", value: 3, muted: true },
-              { label: "Carbohydrate", value: 10 },
-              { label: "Protein", value: 30 },
+              { label: "Fat", value: 3, muted: true, note: "The least metabolically 'expensive' macro to digest — almost all its calories are usable." },
+              { label: "Carbohydrate", value: 10, note: "A moderate digestive cost — some energy is spent processing it before it's usable." },
+              { label: "Protein", value: 30, note: "The most expensive to digest — up to 30% of its calories go toward processing it." },
             ]}
           />
         </ChartShell>,
@@ -370,12 +423,12 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-2",
                 area: true,
                 data: [
-                  { x: "0h", y: 0 },
-                  { x: "24h", y: 6 },
-                  { x: "48h", y: 8 },
-                  { x: "72h", y: 5 },
-                  { x: "96h", y: 2 },
-                  { x: "120h", y: 1 },
+                  { x: "0h", y: 0, note: "Right after the workout — soreness hasn't set in yet, since it's inflammation-driven, not immediate." },
+                  { x: "24h", y: 6, note: "Soreness is climbing as the inflammatory repair response builds." },
+                  { x: "48h", y: 8, note: "Typical peak of DOMS — right in the 24-72 hour window research describes." },
+                  { x: "72h", y: 5, note: "Starting to fade as repair processes wind down." },
+                  { x: "96h", y: 2, note: "Mostly resolved for most people by this point." },
+                  { x: "120h", y: 1, note: "Nearly gone — the repeated-bout effect means it'll be milder next time." },
                 ],
               },
             ]}
@@ -395,10 +448,10 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-1",
                 area: true,
                 data: [
-                  { x: "Immediate", y: 0.38 },
-                  { x: "24h", y: 0.53 },
-                  { x: "48h", y: 0.77 },
-                  { x: "72h", y: 0.67 },
+                  { x: "Immediate", y: 0.38, note: "Smallest effect — foam rolling right after exercise helps least." },
+                  { x: "24h", y: 0.53, note: "A meaningfully larger benefit rolling out a day after training." },
+                  { x: "48h", y: 0.77, note: "The largest effect in this meta-analysis — right around DOMS's usual peak." },
+                  { x: "72h", y: 0.67, note: "Still a strong effect as soreness begins to fade on its own." },
                 ],
               },
             ]}
@@ -422,13 +475,13 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-1",
                 area: true,
                 data: [
-                  { x: "Day 1", y: 5 },
-                  { x: "Day 14", y: 25 },
-                  { x: "Day 30", y: 50 },
-                  { x: "Day 45", y: 68 },
-                  { x: "Day 66", y: 82 },
-                  { x: "Day 90", y: 92 },
-                  { x: "Day 120", y: 96 },
+                  { x: "Day 1", y: 5, note: "Brand new routine — still requires full conscious effort." },
+                  { x: "Day 14", y: 25, note: "Two weeks in — nowhere near the mythical '21 days,' and that's normal." },
+                  { x: "Day 30", y: 50, note: "Halfway to feeling automatic, roughly a month in." },
+                  { x: "Day 45", y: 68, note: "Getting noticeably easier, but still short of the median plateau." },
+                  { x: "Day 66", y: 82, note: "The median day habits become automatic, per Lally et al. 2010." },
+                  { x: "Day 90", y: 92, note: "Past the median — automaticity is now close to its individual ceiling." },
+                  { x: "Day 120", y: 96, note: "Near full automaticity — the habit now largely runs itself." },
                 ],
               },
             ]}
@@ -442,8 +495,17 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit="%"
             data={[
-              { label: "<4x/week", value: 44.8, muted: true },
-              { label: "≥4x/week", value: 61.5 },
+              {
+                label: "<4x/week",
+                value: 44.8,
+                muted: true,
+                note: "Lower early-weeks frequency — less than half reported the habit had formed by week 6.",
+              },
+              {
+                label: "≥4x/week",
+                value: 61.5,
+                note: "Training at least 4x/week in the first 6 weeks meaningfully raised the odds of habit formation.",
+              },
             ]}
           />
         </ChartShell>,
@@ -459,8 +521,8 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=""
             data={[
-              { label: "Control", value: 100, muted: true },
-              { label: "Strength training", value: 30 },
+              { label: "Control", value: 100, muted: true, note: "Baseline injury rate with no structured strength training — indexed to 100." },
+              { label: "Strength training", value: 30, note: "Less than a third of the control group's injury rate — one of the strongest effects in this literature." },
             ]}
           />
         </ChartShell>,
@@ -478,12 +540,12 @@ function chartsFor(slug: string): React.ReactNode[] {
                 colorVar: "--viz-series-2",
                 area: true,
                 data: [
-                  { x: "0.5", y: 70 },
-                  { x: "0.8", y: 25 },
-                  { x: "1.0", y: 15 },
-                  { x: "1.3", y: 20 },
-                  { x: "1.6", y: 55 },
-                  { x: "2.0", y: 85 },
+                  { x: "0.5", y: 70, note: "Training far below your usual chronic load — undertraining also raises risk, since tissue isn't well conditioned." },
+                  { x: "0.8", y: 25, note: "Entering the 'sweet spot' — acute load stays close to your rolling average." },
+                  { x: "1.0", y: 15, note: "Lowest-risk point — this week's load matches your chronic baseline almost exactly." },
+                  { x: "1.3", y: 20, note: "Still within the safe zone, near the upper edge of the sweet spot." },
+                  { x: "1.6", y: 55, note: "A meaningful spike above chronic load — risk is climbing fast here." },
+                  { x: "2.0", y: 85, note: "A large, sudden jump in training load — the classic 'too much too soon' injury pattern." },
                 ],
               },
             ]}
@@ -501,10 +563,10 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit="%"
             data={[
-              { label: "Control", value: 0.3, muted: true },
-              { label: "Aerobic only", value: 1.1 },
-              { label: "Combined", value: 1.4 },
-              { label: "Resistance only", value: 1.6 },
+              { label: "Control", value: 0.3, muted: true, note: "No structured training — minimal body-fat change over 22 weeks." },
+              { label: "Aerobic only", value: 1.1, note: "Cardio alone produced a real, but comparatively modest, reduction." },
+              { label: "Combined", value: 1.4, note: "Aerobic + resistance training together — better than aerobic alone in this trial." },
+              { label: "Resistance only", value: 1.6, note: "The single largest body-fat-percentage drop of any group in this trial." },
             ]}
           />
         </ChartShell>,
@@ -516,8 +578,8 @@ function chartsFor(slug: string): React.ReactNode[] {
           <BarChart
             yUnit=" kg"
             data={[
-              { label: "Aerobic", value: 1.06 },
-              { label: "Combined", value: 1.09 },
+              { label: "Aerobic", value: 1.06, note: "Extra absolute fat mass lost compared to resistance training alone, in adults." },
+              { label: "Combined", value: 1.09, note: "Aerobic + resistance training's extra fat-mass edge over resistance alone — similar to aerobic's edge." },
             ]}
           />
         </ChartShell>,

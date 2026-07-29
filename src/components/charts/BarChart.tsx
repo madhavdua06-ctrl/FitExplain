@@ -7,6 +7,7 @@ export interface BarDatum {
   label: string;
   value: number;
   muted?: boolean;
+  note?: string;
 }
 
 const WIDTH = 640;
@@ -162,20 +163,27 @@ export function BarChart({
       </svg>
       {hoverIdx !== null ? (
         <div
-          className="pointer-events-none absolute z-10 flex -translate-x-1/2 -translate-y-[calc(100%+28px)] items-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+          className={`animate-pop-in pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+28px)] rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs shadow-lg dark:border-slate-700 dark:bg-slate-900 ${
+            data[hoverIdx].note ? "w-56" : "whitespace-nowrap"
+          }`}
           style={{
             left: `${(xCenter(hoverIdx) / WIDTH) * 100}%`,
             top: `${(yAt(data[hoverIdx].value) / HEIGHT) * 100}%`,
           }}
         >
-          <span
-            className="inline-block h-2 w-2 shrink-0 rounded-full"
-            style={{
-              backgroundColor: data[hoverIdx].muted ? "var(--viz-text-muted)" : "var(--viz-series-1)",
-            }}
-          />
-          {data[hoverIdx].label}: {yFormat(data[hoverIdx].value)}
-          {yUnit}
+          <div className="flex items-center gap-1.5 font-medium text-slate-900 dark:text-white">
+            <span
+              className="inline-block h-2 w-2 shrink-0 rounded-full"
+              style={{
+                backgroundColor: data[hoverIdx].muted ? "var(--viz-text-muted)" : "var(--viz-series-1)",
+              }}
+            />
+            {data[hoverIdx].label}: {yFormat(data[hoverIdx].value)}
+            {yUnit}
+          </div>
+          {data[hoverIdx].note ? (
+            <p className="mt-1 leading-snug text-slate-500 dark:text-slate-400">{data[hoverIdx].note}</p>
+          ) : null}
         </div>
       ) : null}
     </div>

@@ -3,11 +3,13 @@
 import { useState, useTransition } from "react";
 import { Plus } from "lucide-react";
 import { logWeight } from "@/lib/body/actions";
+import { useToast } from "@/lib/toast/ToastContext";
 
 export function LogWeightForm() {
   const [weight, setWeight] = useState("");
   const [isPending, startTransition] = useTransition();
   const [justLogged, setJustLogged] = useState(false);
+  const { showToast } = useToast();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,6 +20,7 @@ export function LogWeightForm() {
       await logWeight(value);
       setWeight("");
       setJustLogged(true);
+      showToast(`Logged ${value}kg — keep tracking your progress.`, "success");
       setTimeout(() => setJustLogged(false), 2000);
     });
   }
