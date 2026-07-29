@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { cookies, headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { ModeProvider, type Mode } from "@/lib/mode/ModeContext";
+import { ThemeProvider, type Theme } from "@/lib/theme/ThemeContext";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -37,16 +38,20 @@ export default async function RootLayout({
         ? "scientific"
         : "simple";
 
+  const initialTheme: Theme = cookieStore.get("fittheme")?.value === "light" ? "light" : "dark";
+
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${initialTheme === "dark" ? "dark" : ""} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-        <ModeProvider initialMode={initialMode}>
-          <Header isLoggedIn={Boolean(session)} />
-          <main className="flex-1">{children}</main>
-        </ModeProvider>
+      <body className="bg-grid min-h-full flex flex-col">
+        <ThemeProvider initialTheme={initialTheme}>
+          <ModeProvider initialMode={initialMode}>
+            <Header isLoggedIn={Boolean(session)} />
+            <main className="flex-1">{children}</main>
+          </ModeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

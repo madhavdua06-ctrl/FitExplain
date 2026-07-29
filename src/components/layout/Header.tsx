@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { Activity } from "lucide-react";
 import { ModeToggle } from "./ModeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 import { LogoutButton } from "./LogoutButton";
 
 export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/80">
+    <header className="glass sticky top-0 z-20 border-b border-slate-200/80 dark:border-white/10">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-sm">
+          <span className="glow-cyan flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-600 text-white">
             <Activity className="h-[18px] w-[18px]" aria-hidden />
           </span>
           FitExplain
@@ -44,7 +45,10 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             </>
           ) : null}
 
-          <ModeToggle />
+          <div className="flex items-center gap-2">
+            <ModeToggle />
+            <ThemeToggle />
+          </div>
 
           {isLoggedIn ? (
             <LogoutButton />
@@ -58,7 +62,7 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
               </Link>
               <Link
                 href="/signup"
-                className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                className="glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500"
               >
                 Sign up
               </Link>

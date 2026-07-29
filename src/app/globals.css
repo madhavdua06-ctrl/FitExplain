@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+/* Manual theme toggle: dark: utilities respond to a `.dark` ancestor class
+   (stamped server-side from the `fittheme` cookie) instead of only the OS
+   media query, so the toggle always wins regardless of system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8fc;
+  --foreground: #0b0d14;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -12,17 +18,56 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #05070d;
+  --foreground: #e8ecf7;
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Futuristic backdrop: a faint blueprint grid, visible mainly in dark mode */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.dark .bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+}
+
+/* Glassmorphic surface used for cards throughout the redesign */
+.glass {
+  background: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(15 23 42 / 0.08);
+}
+.dark .glass {
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+
+/* Glow utilities for the futuristic accent treatment */
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgb(34 211 238 / 0.15), 0 0 24px rgb(34 211 238 / 0.15);
+}
+.glow-violet {
+  box-shadow: 0 0 0 1px rgb(139 92 246 / 0.15), 0 0 24px rgb(139 92 246 / 0.15);
+}
+.text-gradient {
+  background: linear-gradient(90deg, #22d3ee, #6366f1, #d946ef);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Data-viz tokens (dataviz skill reference palette) — scoped so chart
@@ -39,19 +84,17 @@ body {
   --viz-series-2: #eb6834; /* orange */
   --viz-series-1-wash: rgb(42 120 214 / 10%);
 }
-@media (prefers-color-scheme: dark) {
-  .viz-root {
-    color-scheme: dark;
-    --viz-surface: #1a1a19;
-    --viz-text-primary: #ffffff;
-    --viz-text-secondary: #c3c2b7;
-    --viz-text-muted: #898781;
-    --viz-grid: #2c2c2a;
-    --viz-baseline: #383835;
-    --viz-series-1: #3987e5;
-    --viz-series-2: #d95926;
-    --viz-series-1-wash: rgb(57 135 229 / 12%);
-  }
+.dark .viz-root {
+  color-scheme: dark;
+  --viz-surface: #10131c;
+  --viz-text-primary: #ffffff;
+  --viz-text-secondary: #c3c2b7;
+  --viz-text-muted: #898781;
+  --viz-grid: #2c2c2a;
+  --viz-baseline: #383835;
+  --viz-series-1: #3987e5;
+  --viz-series-2: #d95926;
+  --viz-series-1-wash: rgb(57 135 229 / 12%);
 }
 
 @keyframes fade-in-up {
