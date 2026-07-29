@@ -11,11 +11,18 @@ const ACTIVITY_MULTIPLIERS = [
   { value: "1.9", label: "Athlete (2x/day training)" },
 ];
 
-export function TdeeCalculator() {
-  const [sex, setSex] = useState<"male" | "female">("male");
-  const [age, setAge] = useState("30");
-  const [weightKg, setWeightKg] = useState("75");
-  const [heightCm, setHeightCm] = useState("175");
+export interface TdeeInitialValues {
+  sex?: "male" | "female";
+  age?: number;
+  weightKg?: number;
+  heightCm?: number;
+}
+
+export function TdeeCalculator({ initial }: { initial?: TdeeInitialValues }) {
+  const [sex, setSex] = useState<"male" | "female">(initial?.sex ?? "male");
+  const [age, setAge] = useState(initial?.age ? String(initial.age) : "30");
+  const [weightKg, setWeightKg] = useState(initial?.weightKg ? String(initial.weightKg) : "75");
+  const [heightCm, setHeightCm] = useState(initial?.heightCm ? String(initial.heightCm) : "175");
   const [activity, setActivity] = useState("1.55");
 
   const ageNum = Number(age);

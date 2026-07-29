@@ -23,12 +23,12 @@ const TOPIC_TITLES: Record<string, string> = {
 };
 
 const FOCUS_ACCENT: Record<string, string> = {
-  "Full Body": "border-l-emerald-500",
-  "Upper Body": "border-l-emerald-500",
-  "Lower Body": "border-l-indigo-500",
-  Push: "border-l-emerald-500",
-  Pull: "border-l-indigo-500",
-  Legs: "border-l-orange-500",
+  "Full Body": "bg-emerald-500",
+  "Upper Body": "bg-emerald-500",
+  "Lower Body": "bg-indigo-500",
+  Push: "bg-emerald-500",
+  Pull: "bg-indigo-500",
+  Legs: "bg-orange-500",
 };
 
 export function PlanView({ plan }: { plan: PlanResult }) {
@@ -40,8 +40,9 @@ export function PlanView({ plan }: { plan: PlanResult }) {
   return (
     <div className="mx-auto max-w-3xl space-y-10 px-4 py-12">
       <section>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Your Plan: {SPLIT_LABELS[plan.splitType]}
+        <h1 className="text-3xl font-bold tracking-tight">
+          <span className="text-slate-900 dark:text-white">Your Plan: </span>
+          <span className="text-gradient">{SPLIT_LABELS[plan.splitType]}</span>
         </h1>
         <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-300">
           {plan.rationaleKeys.map((key) => {
@@ -71,17 +72,16 @@ export function PlanView({ plan }: { plan: PlanResult }) {
 
       <section>
         <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-white">
-          <CalendarDays className="h-5 w-5 text-emerald-600" aria-hidden />
+          <CalendarDays className="h-5 w-5 text-cyan-500" aria-hidden />
           Weekly Schedule
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {plan.weeklySchedule.map((day) => (
-            <div
-              key={day.day}
-              className={`rounded-xl border border-l-4 border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 ${
-                FOCUS_ACCENT[day.focus] ?? "border-l-emerald-500"
-              }`}
-            >
+            <div key={day.day} className="glass relative overflow-hidden rounded-xl p-4 pl-5">
+              <span
+                className={`absolute inset-y-0 left-0 w-1 ${FOCUS_ACCENT[day.focus] ?? "bg-emerald-500"}`}
+                aria-hidden
+              />
               <h3 className="font-semibold text-slate-900 dark:text-white">
                 Day {day.day}: {day.focus}
               </h3>
@@ -103,7 +103,7 @@ export function PlanView({ plan }: { plan: PlanResult }) {
 
       <section>
         <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-white">
-          <Utensils className="h-5 w-5 text-emerald-600" aria-hidden />
+          <Utensils className="h-5 w-5 text-orange-500" aria-hidden />
           Nutrition
         </h2>
         <p className="mt-2 text-slate-600 dark:text-slate-300">
@@ -119,7 +119,7 @@ export function PlanView({ plan }: { plan: PlanResult }) {
 
       <section>
         <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-white">
-          <HeartPulse className="h-5 w-5 text-emerald-600" aria-hidden />
+          <HeartPulse className="h-5 w-5 text-fuchsia-500" aria-hidden />
           Cardio
         </h2>
         <p className="mt-2 text-slate-600 dark:text-slate-300">{plan.cardio.style}</p>
@@ -127,7 +127,7 @@ export function PlanView({ plan }: { plan: PlanResult }) {
 
       <section>
         <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-900 dark:text-white">
-          <BookOpen className="h-5 w-5 text-emerald-600" aria-hidden />
+          <BookOpen className="h-5 w-5 text-cyan-500" aria-hidden />
           Learn More
         </h2>
         <ul className="mt-2 flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ export function PlanView({ plan }: { plan: PlanResult }) {
             <li key={slug}>
               <Link
                 href={`/topics/${slug}`}
-                className="rounded-full border border-slate-300 px-3 py-1 text-sm text-slate-700 transition hover:border-emerald-600 hover:text-emerald-600 dark:border-slate-700 dark:text-slate-300"
+                className="glass rounded-full px-3 py-1 text-sm text-slate-700 transition hover:border-cyan-400/50 hover:text-cyan-600 dark:text-slate-300 dark:hover:text-cyan-400"
               >
                 {TOPIC_TITLES[slug] ?? slug}
               </Link>
@@ -144,8 +144,11 @@ export function PlanView({ plan }: { plan: PlanResult }) {
         </ul>
       </section>
 
-      <div className="border-t border-slate-200 pt-6 dark:border-slate-700">
-        <Link href="/onboarding" className="text-sm font-medium text-emerald-600 hover:underline">
+      <div className="border-t border-slate-200 pt-6 dark:border-white/10">
+        <Link
+          href="/onboarding"
+          className="text-sm font-medium text-cyan-600 hover:underline dark:text-cyan-400"
+        >
           Retake questionnaire
         </Link>
       </div>

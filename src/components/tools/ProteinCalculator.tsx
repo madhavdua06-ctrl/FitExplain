@@ -9,11 +9,17 @@ const GOAL_RANGES = {
   "Endurance / general health": { min: 1.2, max: 1.6 },
 } as const;
 
-type GoalKey = keyof typeof GOAL_RANGES;
+export type GoalKey = keyof typeof GOAL_RANGES;
 
-export function ProteinCalculator() {
-  const [weightKg, setWeightKg] = useState("75");
-  const [goal, setGoal] = useState<GoalKey>("Muscle gain");
+export function ProteinCalculator({
+  initialWeightKg,
+  initialGoal,
+}: {
+  initialWeightKg?: number;
+  initialGoal?: GoalKey;
+}) {
+  const [weightKg, setWeightKg] = useState(initialWeightKg ? String(initialWeightKg) : "75");
+  const [goal, setGoal] = useState<GoalKey>(initialGoal ?? "Muscle gain");
 
   const weightNum = Number(weightKg);
   const valid = weightNum > 0;

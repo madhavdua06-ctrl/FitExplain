@@ -42,7 +42,7 @@ export function TopicCard({
   return (
     <Link
       href={`/topics/${slug}`}
-      className="group relative block overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-800"
+      className="glass group relative block overflow-hidden rounded-2xl p-5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-cyan-500/10"
     >
       <span className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accent}`} aria-hidden />
       <div className="flex items-start justify-between">
@@ -56,7 +56,7 @@ export function TopicCard({
           </span>
         ) : (
           <ArrowUpRight
-            className="h-4 w-4 text-slate-300 transition group-hover:text-emerald-600 dark:text-slate-600"
+            className="h-4 w-4 text-slate-300 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-500 dark:text-slate-600"
             aria-hidden
           />
         )}

@@ -4,11 +4,12 @@ import { ChartShell, LegendItem } from "@/components/charts/ChartShell";
 import { LineChart } from "@/components/charts/LineChart";
 import { BarChart } from "@/components/charts/BarChart";
 
-export function TopicChart({ slug }: { slug: string }) {
+function chartsFor(slug: string): React.ReactNode[] {
   switch (slug) {
     case "progressive-overload":
-      return (
+      return [
         <ChartShell
+          key="overload"
           title="Progressive overload vs. a static routine"
           subtitle="Illustrative model of relative strength over 12 weeks — individual results vary."
           legend={
@@ -50,12 +51,13 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "muscle-protein-synthesis":
-      return (
+      return [
         <ChartShell
+          key="mps-timecourse"
           title="Muscle protein synthesis after a protein-rich meal"
           subtitle="Generalized pattern from muscle biopsy research — timing varies by meal size and training status."
         >
@@ -79,12 +81,38 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+        <ChartShell
+          key="protein-plateau"
+          title="Protein intake vs. muscle gain"
+          subtitle="Illustrative curve shaped to the real finding: gains plateau around 1.6g/kg/day (95% CI up to 2.2g/kg/day) — Morton et al. 2018."
+        >
+          <LineChart
+            yUnit="%"
+            yFormat={(v) => `${v}`}
+            zeroBaseline={false}
+            series={[
+              {
+                label: "Relative muscle gain",
+                colorVar: "--viz-series-1",
+                area: true,
+                data: [
+                  { x: "0.5 g/kg", y: 40 },
+                  { x: "1.0 g/kg", y: 75 },
+                  { x: "1.6 g/kg", y: 100 },
+                  { x: "2.2 g/kg", y: 104 },
+                  { x: "3.0 g/kg", y: 105 },
+                ],
+              },
+            ]}
+          />
+        </ChartShell>,
+      ];
 
     case "caloric-deficit":
-      return (
+      return [
         <ChartShell
+          key="deficit"
           title="Actual weight loss vs. a naive linear projection"
           subtitle="Illustrative model of a sustained ~18% deficit — metabolic adaptation slows real-world progress below a straight-line projection."
           legend={
@@ -126,12 +154,13 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "vo2-max":
-      return (
+      return [
         <ChartShell
+          key="vo2-ranges"
           title="Typical VO2 max by training status"
           subtitle="Illustrative approximate ranges, mL O2 · kg⁻¹ · min⁻¹ — actual norms vary substantially by age, sex, and testing protocol."
         >
@@ -144,12 +173,26 @@ export function TopicChart({ slug }: { slug: string }) {
               { label: "Elite endurance", value: 75 },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+        <ChartShell
+          key="vo2-personalized"
+          title="VO2max gain: personalized vs. standardized training"
+          subtitle="Real 13-week RCT results (n=109) — Weatherwax et al. 2024. Personalized = threshold-based; standardized = generic heart-rate-reserve program."
+        >
+          <BarChart
+            yUnit=" mL/kg/min"
+            data={[
+              { label: "Standardized", value: 3.1, muted: true },
+              { label: "Personalized", value: 4.85 },
+            ]}
+          />
+        </ChartShell>,
+      ];
 
     case "recovery-sleep":
-      return (
+      return [
         <ChartShell
+          key="gh-release"
           title="Growth hormone release across a night's sleep"
           subtitle="Generalized pattern — GH secretion peaks during early slow-wave (deep) sleep."
         >
@@ -175,12 +218,13 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "hydration":
-      return (
+      return [
         <ChartShell
+          key="hydration-decrement"
           title="Performance decrement by body-mass water loss"
           subtitle="Illustrative — reflects the general accelerating-decrement pattern reported in exercise-physiology research; exact figures vary by study, activity, and heat."
         >
@@ -203,12 +247,35 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
+
+    case "supplements-that-work":
+      return [
+        <ChartShell
+          key="supplement-labels"
+          title="Label accuracy in tested performance supplements"
+          subtitle="Real results, but narrow scope: 57 products tested for 5 specific botanical/stimulant ingredients — Cohen et al. 2023, JAMA Network Open. Not a survey of supplements broadly."
+        >
+          <BarChart
+            yUnit="%"
+            data={[
+              { label: "Accurately labeled", value: 11 },
+              { label: "Prohibited stimulant found", value: 12 },
+              { label: "No listed ingredient detected", value: 40 },
+              { label: "Inaccurately labeled (any)", value: 89, muted: true },
+            ]}
+          />
+        </ChartShell>,
+      ];
 
     case "macronutrients-101":
-      return (
-        <ChartShell title="Energy density by macronutrient" subtitle="Kcal per gram — established nutrition science constants, not estimates.">
+      return [
+        <ChartShell
+          key="kcal-density"
+          title="Energy density by macronutrient"
+          subtitle="Kcal per gram — established nutrition science constants, not estimates."
+        >
           <BarChart
             yUnit=" kcal/g"
             data={[
@@ -218,12 +285,13 @@ export function TopicChart({ slug }: { slug: string }) {
               { label: "Fat", value: 9 },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "doms-muscle-soreness":
-      return (
+      return [
         <ChartShell
+          key="doms-timecourse"
           title="Soreness intensity after a hard, unfamiliar workout"
           subtitle="Illustrative — reflects the typical rise-and-fall pattern; exact intensity and duration vary widely by person and exercise."
         >
@@ -246,12 +314,13 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "habit-formation":
-      return (
+      return [
         <ChartShell
+          key="automaticity"
           title="How automatic a new habit feels over time"
           subtitle="Illustrative curve shaped to match the real finding: automaticity plateaus at a median of 66 days (range 18–254) in controlled research."
         >
@@ -275,12 +344,13 @@ export function TopicChart({ slug }: { slug: string }) {
               },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "injury-prevention":
-      return (
+      return [
         <ChartShell
+          key="injury-rate"
           title="Relative sports-injury rate, by training group"
           subtitle="Index where the control group = 100. Reflects Lauersen et al. (2014): strength training reduced injuries to less than one-third of control rates."
         >
@@ -291,12 +361,13 @@ export function TopicChart({ slug }: { slug: string }) {
               { label: "Strength training", value: 30 },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+      ];
 
     case "resistance-vs-cardio":
-      return (
+      return [
         <ChartShell
+          key="hearty-trial"
           title="Body fat % reduction after 22 weeks, by training type"
           subtitle="Real intention-to-treat results from the HEARTY trial in obese adolescents — not a general-adult dataset, see caveat below."
         >
@@ -309,10 +380,29 @@ export function TopicChart({ slug }: { slug: string }) {
               { label: "Resistance only", value: 1.6 },
             ]}
           />
-        </ChartShell>
-      );
+        </ChartShell>,
+        <ChartShell
+          key="fat-mass-meta"
+          title="Extra fat-mass loss vs. resistance training alone"
+          subtitle="Real 2025 meta-analysis of trials ≥10 weeks, general adult population — Lafontant et al. Body-fat percentage did not differ significantly between groups; this chart is absolute fat mass specifically."
+        >
+          <BarChart
+            yUnit=" kg"
+            data={[
+              { label: "Aerobic", value: 1.06 },
+              { label: "Combined", value: 1.09 },
+            ]}
+          />
+        </ChartShell>,
+      ];
 
     default:
-      return null;
+      return [];
   }
+}
+
+export function TopicChart({ slug }: { slug: string }) {
+  const charts = chartsFor(slug);
+  if (!charts.length) return null;
+  return <div className="space-y-6">{charts}</div>;
 }

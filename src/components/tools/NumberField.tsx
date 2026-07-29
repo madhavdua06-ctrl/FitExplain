@@ -24,7 +24,7 @@ export function NumberField({
           min={min}
           max={max}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800"
+          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-400 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white"
         />
         {unit ? (
           <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-slate-400">

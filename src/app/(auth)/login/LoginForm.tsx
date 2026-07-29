@@ -7,7 +7,7 @@ import { login, type AuthActionState } from "./actions";
 const initialState: AuthActionState = { error: null };
 
 const inputClass =
-  "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800";
+  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-cyan-400 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white";
 const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300";
 
 export function LoginForm() {
@@ -31,13 +31,13 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60"
+        className="glow-cyan w-full rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-3 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-60"
       >
         {pending ? "Logging in…" : "Log in"}
       </button>
       <p className="text-center text-sm text-slate-500">
         Don&apos;t have an account?{" "}
-        <Link href="/signup" className="font-medium text-emerald-600">
+        <Link href="/signup" className="font-medium text-cyan-600 dark:text-cyan-400">
           Sign up
         </Link>
       </p>

@@ -124,3 +124,59 @@ body {
 .animate-pop-in {
   animation: pop-in 0.2s ease-out;
 }
+
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3%, 4%) scale(1.05);
+  }
+  66% {
+    transform: translate(-3%, 2%) scale(0.97);
+  }
+}
+.animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+.animate-drift-slow {
+  animation: drift 26s ease-in-out infinite reverse;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgb(34 211 238 / 0.15), 0 0 20px rgb(34 211 238 / 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgb(34 211 238 / 0.3), 0 0 32px rgb(34 211 238 / 0.3);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+@keyframes chart-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.85) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
+  }
+}
+.animate-chart-in {
+  animation: chart-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift,
+  .animate-drift-slow,
+  .animate-pulse-glow,
+  .animate-chart-in,
+  .animate-fade-in-up,
+  .animate-pop-in {
+    animation: none;
+  }
+}

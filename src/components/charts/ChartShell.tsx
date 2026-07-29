@@ -10,7 +10,7 @@ export function ChartShell({
   legend?: React.ReactNode;
 }) {
   return (
-    <figure className="viz-root rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-[color:var(--viz-surface)]">
+    <figure className="viz-root animate-chart-in rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[color:var(--viz-surface)] dark:shadow-[0_0_30px_-15px_rgb(34_211_238/0.25)]">
       <figcaption className="mb-4">
         <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
         {subtitle ? (

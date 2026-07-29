@@ -25,17 +25,22 @@ export function LineChart({
   series,
   yUnit = "",
   yFormat = (v: number) => String(v),
+  zeroBaseline = true,
 }: {
   series: LineSeries[];
   yUnit?: string;
   yFormat?: (v: number) => string;
+  /** Force the y-axis to include 0. Appropriate for magnitudes/percentages;
+   * set false for values like body weight where zooming into the actual
+   * range (not misleading for a line, unlike a bar) shows the trend clearly. */
+  zeroBaseline?: boolean;
 }) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   const points = series[0].data;
   const n = points.length;
   const allY = series.flatMap((s) => s.data.map((p) => p.y));
-  const yMin = Math.min(0, ...allY);
+  const yMin = zeroBaseline ? Math.min(0, ...allY) : Math.min(...allY);
   const yMax = Math.max(...allY);
   const ticks = niceTicks(yMin, yMax, 4);
   const domainMin = Math.min(yMin, ticks[0]);

@@ -12,26 +12,24 @@ export function Sources({ sources }: { sources: Source[] }) {
   if (!sources.length) return null;
 
   return (
-    <section className="mt-10 border-t border-slate-200 pt-6 dark:border-slate-800">
-      <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white">
-        <BookOpen className="h-4 w-4 text-emerald-600" aria-hidden />
+    <section className="mt-10 border-t border-slate-200 pt-4 dark:border-white/10">
+      <h2 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+        <BookOpen className="h-3 w-3" aria-hidden />
         Sources
       </h2>
-      <ol className="mt-3 space-y-3">
+      <ol className="mt-2 space-y-1.5">
         {sources.map((source) => (
-          <li key={source.url} className="text-sm text-slate-600 dark:text-slate-300">
+          <li key={source.url} className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
             <a
               href={source.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-slate-800 underline decoration-slate-300 underline-offset-2 transition hover:text-emerald-600 hover:decoration-emerald-600 dark:text-slate-100 dark:decoration-slate-600"
+              className="font-medium text-slate-600 underline decoration-slate-300 underline-offset-2 transition hover:text-cyan-600 hover:decoration-cyan-500 dark:text-slate-300 dark:decoration-slate-600 dark:hover:text-cyan-400"
             >
               {source.title}
             </a>
-            <span className="text-slate-500 dark:text-slate-400">
-              {" "}
-              — {source.authors} ({source.year}). <em>{source.journal}</em>.
-            </span>
+            {" — "}
+            {source.authors} ({source.year}). <em>{source.journal}</em>.
           </li>
         ))}
       </ol>

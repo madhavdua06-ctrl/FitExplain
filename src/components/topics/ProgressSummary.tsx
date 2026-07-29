@@ -13,12 +13,12 @@ export async function ProgressSummary({ userId }: { userId: string }) {
   const streak = computeStreak(progress.map((p) => p.completedAt));
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section className="glass rounded-2xl p-5">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-slate-900 dark:text-white">Your Progress</h2>
         <Link
           href="/journey"
-          className="flex items-center gap-1 text-xs font-medium text-emerald-600 hover:underline"
+          className="flex items-center gap-1 text-xs font-medium text-cyan-600 hover:underline dark:text-cyan-400"
         >
           Full journey
           <ArrowRight className="h-3 w-3" aria-hidden />

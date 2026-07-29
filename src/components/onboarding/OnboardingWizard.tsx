@@ -106,8 +106,8 @@ export function OnboardingWizard() {
         {Array.from({ length: TOTAL_STEPS }, (_, i) => (
           <div
             key={i}
-            className={`h-1.5 flex-1 rounded-full ${
-              i < step ? "bg-emerald-600" : "bg-slate-200 dark:bg-slate-700"
+            className={`h-1.5 flex-1 rounded-full transition-colors ${
+              i < step ? "bg-gradient-to-r from-cyan-500 to-violet-600" : "bg-slate-200 dark:bg-white/10"
             }`}
           />
         ))}
@@ -271,7 +271,7 @@ export function OnboardingWizard() {
             type="button"
             onClick={() => canProceed() && setStep((s) => s + 1)}
             disabled={!canProceed()}
-            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
+            className="glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-50"
           >
             Next
           </button>
@@ -280,7 +280,7 @@ export function OnboardingWizard() {
             type="button"
             onClick={handleSubmit}
             disabled={isPending}
-            className="rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-600/25 transition hover:from-emerald-600 hover:to-teal-700 disabled:opacity-60"
+            className="glow-cyan rounded-lg bg-gradient-to-r from-cyan-500 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:from-cyan-400 hover:to-violet-500 disabled:opacity-60"
           >
             {isPending ? "Generating your plan…" : "Generate my plan"}
           </button>
