@@ -6,8 +6,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f7f8fc;
-  --foreground: #0b0d14;
+  --background: #f6f0e4;
+  --foreground: #2b2620;
   color-scheme: light;
 }
 
@@ -31,11 +31,12 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Futuristic backdrop: a faint blueprint grid, visible mainly in dark mode */
+/* Futuristic backdrop: a faint blueprint grid — warm sepia lines on the
+   cream light theme, cool white lines in dark mode. */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgb(60 45 30 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(60 45 30 / 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 .dark .bg-grid {
@@ -46,10 +47,10 @@ body {
 
 /* Glassmorphic surface used for cards throughout the redesign */
 .glass {
-  background: rgb(255 255 255 / 0.7);
+  background: rgb(250 245 234 / 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgb(15 23 42 / 0.08);
+  border: 1px solid rgb(60 45 30 / 0.1);
 }
 .dark .glass {
   background: rgb(255 255 255 / 0.04);
