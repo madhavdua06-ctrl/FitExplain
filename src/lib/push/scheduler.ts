@@ -32,6 +32,8 @@ export function startWaterReminderScheduler() {
   if (globalScope.__waterSchedulerStarted) return;
   globalScope.__waterSchedulerStarted = true;
 
+  console.log("[water-reminder] scheduler started");
+
   setInterval(() => {
     checkAndSendReminders().catch(() => {});
   }, 20 * 60 * 1000);
