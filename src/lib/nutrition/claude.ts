@@ -41,9 +41,8 @@ const SYSTEM_PROMPT =
   "You estimate nutrition facts for a single described meal or food. Assume one typical serving using standard restaurant or home-cooking portions when the amount isn't specified. Always give your best estimate rather than refusing or asking for clarification.";
 
 export async function estimateNutrition(description: string): Promise<EstimateResult> {
-  const client = new Anthropic();
-
   try {
+    const client = new Anthropic();
     const response = await client.messages.create({
       model: "claude-haiku-4-5",
       max_tokens: 1024,
