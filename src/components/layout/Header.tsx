@@ -37,6 +37,12 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
                 Journey
               </Link>
               <Link
+                href="/stats"
+                className="link-underline hidden text-sm font-medium text-slate-600 transition hover:text-slate-900 sm:inline dark:text-slate-300 dark:hover:text-white"
+              >
+                Stats
+              </Link>
+              <Link
                 href="/dashboard"
                 className="link-underline text-sm font-medium text-slate-600 transition hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
               >

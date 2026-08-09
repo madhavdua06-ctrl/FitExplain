@@ -13,9 +13,7 @@ import {
   Scale,
   Award,
   GraduationCap,
-  Utensils,
   Droplet,
-  Pill,
   Dumbbell,
 } from "lucide-react";
 import { auth } from "@/lib/auth";
@@ -28,19 +26,17 @@ export default async function JourneyPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) redirect("/login");
 
-  const [plan, totalTopics, progress, allTopics, bodyLogCount, foodLogs, waterLogs, workoutLogCount] =
+  const [plan, totalTopics, progress, allTopics, bodyLogCount, waterLogs, workoutLogCount] =
     await Promise.all([
       prisma.generatedPlan.findUnique({ where: { userId: session.user.id } }),
       prisma.topic.count(),
       prisma.topicProgress.findMany({ where: { userId: session.user.id } }),
       prisma.topic.findMany({ orderBy: { order: "asc" } }),
       prisma.bodyLog.count({ where: { userId: session.user.id } }),
-      prisma.foodLog.findMany({ where: { userId: session.user.id }, select: { loggedAt: true } }),
       prisma.waterLog.findMany({ where: { userId: session.user.id }, select: { loggedAt: true } }),
       prisma.workoutLog.count({ where: { userId: session.user.id } }),
     ]);
 
-  const foodLogDays = new Set(foodLogs.map((log) => log.loggedAt.toISOString().slice(0, 10)));
   const waterStreak = computeStreak(waterLogs.map((log) => log.loggedAt));
 
   const completedSlugs = new Set(progress.map((p) => p.topicSlug));
@@ -63,9 +59,7 @@ export default async function JourneyPage() {
     { icon: Scale, label: "Tracking Progress", achieved: bodyLogCount >= 3 },
     { icon: Award, label: "Completionist", achieved: isCompletionist },
     { icon: GraduationCap, label: "FitExplain Certified", achieved: isCertified },
-    { icon: Utensils, label: "First Food Logged", achieved: foodLogs.length >= 1 },
     { icon: Droplet, label: "7-Day Water Streak", achieved: waterStreak >= 7 },
-    { icon: Pill, label: "Vitamin Tracker Started", achieved: foodLogDays.size >= 3 },
     { icon: Dumbbell, label: "3 Workouts Completed", achieved: workoutLogCount >= 3 },
   ];
 
