@@ -154,10 +154,10 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </div>
 
       <ReadAloudProvider simpleText={topic.simpleContent} scientificText={topic.scientificContent}>
-        <div className="mt-3 flex items-start justify-between gap-4">
-          <div className="flex items-center gap-4">
+        <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex min-w-0 items-center gap-4">
             <TopicMotif slug={topic.slug} size="lg" />
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="min-w-0 text-3xl font-bold tracking-tight break-words">
               <span className="text-gradient">{topic.title}</span>
             </h1>
           </div>
