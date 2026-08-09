@@ -29,7 +29,6 @@ model User {
   generatedPlan       GeneratedPlan?
   topicProgress       TopicProgress[]
   bodyLogs            BodyLog[]
-  foodLogs            FoodLog[]
   waterLogs           WaterLog[]
   pushSubscriptions   PushSubscription[]
   workoutLogs         WorkoutLog[]
@@ -197,22 +196,6 @@ model BodyLog {
   loggedAt DateTime @default(now())
 
   @@index([userId])
-}
-
-model FoodLog {
-  id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  loggedAt       DateTime @default(now())
-  rawDescription String
-  calories       Float
-  proteinG       Float
-  carbsG         Float
-  fatG           Float
-  nutrients      Json
-
-  @@index([userId])
-  @@index([userId, loggedAt])
 }
 
 model WaterLog {
